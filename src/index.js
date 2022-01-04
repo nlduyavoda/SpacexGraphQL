@@ -35,7 +35,10 @@ class TodoList {
 
   // actions:
   // TODO: implement addTodo method
-
+  addTodo(todoTitle) {
+    const data =new Todo(todoTitle);
+    this.todos = [...this.todos, data]
+  }
   constructor(todos) {
     makeObservable(this, {
       todos: observable,
@@ -57,7 +60,7 @@ const TodoListView = observer(({ todoList }) => {
         // if exist -> add todo
         // TODO: implement an addTodo action in TodoList
         if (todoTitle) {
-          // call todoList.addTodo(todoTitle)
+            todoList.addTodo(todoTitle);
         }
       }}>
         <input type="text" name="todo-title" placeholder="Write your todo title..."/>
