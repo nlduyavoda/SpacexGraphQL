@@ -178,6 +178,15 @@ You should see something like:
 v14.18.1
 ```
 
+Increase `max_user_watches`:
+
+```sh
+echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
+```
+This value are the limit operating system can keep track of file changes.
+Increasing it help VS Code watch for more file changes in large workspace.
+
+
 Install `yarn`:
 ```sh
 npm install -g yarn
