@@ -17,7 +17,7 @@ const fetchMembers = async () => {
 
 export const TodoListView = observer<{ todoList }>(({ todoList }) => {
   // use useQuery to get data from api fetchMembers
-  const { status, data } = useQuery("members", fetchMembers);
+  const { data, status } = useQuery("members", fetchMembers);
 
   return (
     <div className="todo">
@@ -30,7 +30,7 @@ export const TodoListView = observer<{ todoList }>(({ todoList }) => {
           const todoTitle = e.currentTarget.elements["todo-title"].value;
 
           const assignedMember = e.currentTarget.elements["assign-to"].value;
-          console.log("🚀 ~ file: TodoListView.tsx ~ line 31 ~ assignedMember", assignedMember)
+          console.log("🚀 ~ file: TodoListView.tsx ~ line 31 ~ assignedMember", assignedMember);
 
           // if exist -> add todo
           // TODO: implement an addTodo action in TodoList
