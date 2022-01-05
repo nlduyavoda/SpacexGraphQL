@@ -2,6 +2,7 @@ import * as React from "react";
 import { render } from "react-dom";
 import { observer } from "mobx-react-lite";
 import { makeObservable, observable, computed, action } from "mobx";
+import './index.scss'
 
 // state of a Todo
 class Todo {
@@ -39,6 +40,7 @@ class TodoList {
     const data =new Todo(todoTitle);
     this.todos = [...this.todos, data]
   }
+
   constructor(todos) {
     makeObservable(this, {
       todos: observable,
