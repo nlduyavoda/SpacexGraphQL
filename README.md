@@ -185,6 +185,54 @@ npm install -g yarn
 
 Verify by `yarn --version`
 
+# Install Docker-in-vagrant
+Some projects need special environment setup, for example some backend need to run in `linux`. Docker allows to re-create those environment fast. However, Docker can be slow to worked with in macOS.
+
+To solve this, we install Docker in a Vagrant machine. 
+
+Vagrant machine is a Ubuntu (linux) virtual machine. And we run docker inside that instead of running it directly in macOS.
+
+We will work in this virtual machine instead of macOS for some projects.
+
+Install:
+1) Install Vagrant
+```sh
+brew install vagrant
+```
+2) Install vagrant-disksize plugin:
+```sh
+vagrant plugin install vagrant-disksize
+```
+
+3) Install Virtualbox https://www.virtualbox.org/
+
+4) Clone this project: https://gitlab.ekino.com/francois.barrailla/docker-in-vagrant
+```sh
+git clone git@gitlab.ekino.com:francois.barrailla/docker-in-vagrant.git ~/docker-in-vagrant`
+```
+
+5) Go inside the cloned directory, run `vagrant up` and wait until finish
+
+6) Run `vagrant ssh-config`, copy the config shown in terminal and paste into file `~/.ssh/config`, example:
+
+    - Open file `~/.ssh/config` to edit in terminal:
+    ```sh 
+    nano ~/.ssh/config
+    ```
+    - Paste the config into `~/.ssh/config` file
+    - `cmd+X` to close and `shit+Y` to save the file.
+
+7) Open VS Code and install Remote - SSH extension.
+
+8) Run `cmd + shift + p`, search `Remote-SSH: Connect to Host...`, choose `default` to connect to Vagrant machine. VSCode will open new window that run in Vagrant.
+
+9) Create a SSH key for Vagrant machine and add it to Gitlab, similar to what we did in main macOS. Check https://docs.gitlab.com/ee/ssh/#generate-an-ssh-key-pair for detail.
+
+10) Clone any projects that need to run in Vagrant and start working normally.
+
+11) **Note**: When you want to start to work on your project again later (after break, after shutdown machine, etc.), remember to repeat step (5) (`vagrant up` inside where you cloned the repo `docker-in-vagrant` to start vagrant) and step (8) to connect your VS Code to Vagrant machine.
+
+
 # Install project
 
 Run yarn to install project
@@ -209,3 +257,15 @@ Example of `types` are:
 `commit message` can be Jira title.
 
 For example, `fix(JD-1): Wrong tasks left number`
+
+# Common Git workflow:
+
+1) Clone repository: `git clone <repo>`
+2) Checkout main branch to work from: `git checkout <main-branch>`. Main branch can be branch `master`, `main`, `develop` or `dev`, etc. depends on project.
+3) Create a branch for your task `git checkout -b <task-jira-id>`
+4) After finish, `git add .` to add all changes made or `git add <changed-file>` to add a changed file.
+5) Commit those changes with `git commit -m <commit-msg>`
+6) Push your commit to remote `git push -u origin <your-branch-name>`
+7) Create merge request from your branch to the main branch you checkout-ed from and wait for it to be merged
+8) After it's merged, checkout main branch and pull the latest updates: `git pull --ff-only origin <main-branch>`
+9) Repeat at step 3) to start your new task.
