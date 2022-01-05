@@ -1,6 +1,6 @@
 import { observer } from "mobx-react-lite";
 // import useQuery
-
+import { useQuery } from "react-query";
 import "./index.scss";
 
 // APIs:
@@ -16,9 +16,8 @@ const fetchMembers = async () => {
 };
 
 export const TodoListView = observer<{ todoList }>(({ todoList }) => {
-  const status = 'loading'
-  const data = [] 
   // use useQuery to get data from api fetchMembers
+  const { status, data } = useQuery("members", fetchMembers);
 
   return (
     <div className="todo">
