@@ -1,9 +1,4 @@
 import * as React from "react";
-import {
-  BrowserRouter,
-  Routes,
-  Route
-} from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { render } from "react-dom";
 import { TodoListView } from "./TodoListView";
