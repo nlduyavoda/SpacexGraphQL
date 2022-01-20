@@ -1,5 +1,19 @@
 form {
     > div {
         margin-bottom: 20px;
+        >input{
+            position: relative;
+        }
+        .Hobbies{
+            list-style: none ;
+            margin-bottom: 10px;
+            input{
+                margin-right: 10px;
+            }
+        }
+       
+    }
+    .validate{
+        color: red;
     }
 }
