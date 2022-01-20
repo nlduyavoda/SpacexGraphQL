@@ -49,7 +49,7 @@ function StudentForm() {
     }
     if (validateGender) {
       setTimeout(() => {
-        console.log(data);
+        alert(data);
       }, 1000);
     }
     if (!validateGender) {
