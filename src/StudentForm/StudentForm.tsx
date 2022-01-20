@@ -1,7 +1,6 @@
 import React, { useState } from "react";
+import { Controller, useFieldArray, useForm } from "react-hook-form";
 import "./StudentForm.scss";
-import { useForm, useFieldArray, Controller } from "react-hook-form";
-import { off } from "process";
 /*
   Using react hook form
   Ex 1: Click button submit, alert whole form value as object, which can display all info
@@ -23,21 +22,16 @@ function StudentForm() {
       name: "",
       gender: "",
       habits: "",
-      Hobbies: [{ firstName: "Bill" }],
+      Hobbies: [{ title: "Bill" }],
     },
   });
-  const { fields, append, prepend, remove, swap, move, insert, replace } =
-    useFieldArray({
-      control,
-      name: "Hobbies",
-    });
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: "Hobbies",
+  });
   const [isChecked, setIsChecked] = useState("");
   const [validateGender, setValidateGender] = useState(false);
   const [isDisabled, setIsDisabled] = useState(false);
-  // const { fields, append, prepend, remove, swap, move, insert } = useFieldArray({
-  //   name: "test", // unique name for your Field Array
-  //   // keyName: "id", default to "id", you can change the key name
-  // });
 
   const onSubmit = (data) => {
     if (isChecked === "") {
@@ -46,38 +40,40 @@ function StudentForm() {
           required: true,
         },
       });
-    }
-    if (validateGender) {
-      setTimeout(() => {
-        alert(data);
-      }, 1000);
-    }
-    if (!validateGender) {
+    } else if (validateGender) {
+      console.log(isChecked);
+    } else if (!validateGender) {
       verifyMaleTextField(data.gender);
     }
   };
   const verifyMaleTextField = (gender: string) => {
     if (gender === "male" && fields.length < 2) {
-      append({ firstName: "..." });
+      append({ title: "..." });
       setValidateGender(true);
     } else {
       setValidateGender(false);
     }
   };
-
+  const verifyFemaleTextField = (gender: string) => {
+    setIsDisabled(true);
+    setValidateGender(true);
+  };
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let gender = e.target.value;
     if (gender === "male") {
-      verifyMaleTextField(e.target.value);
+      verifyMaleTextField(gender);
       setIsDisabled(false);
     } else if (gender === "female") {
-      setIsDisabled(true);
+      verifyFemaleTextField(gender);
     }
     setIsChecked(e.target.value);
   };
   const handleRemove = (index, gender) => {
     verifyMaleTextField(gender);
     remove(index);
+  };
+  const handleAppend = () => {
+    append({ title: "..." });
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -145,7 +141,7 @@ function StudentForm() {
                     <input
                       disabled={isDisabled}
                       key={item.id}
-                      {...register(`Hobbies.${index}.firstName`)}
+                      {...register(`Hobbies.${index}.title`)}
                     />
                   )}
                   name="Hobbies"
@@ -164,8 +160,9 @@ function StudentForm() {
         })}
         <br />
         <button
+          type="button"
           disabled={isDisabled}
-          onClick={() => append({ firstName: "..." })}
+          onClick={() => handleAppend()}
         >
           Click to add more habit
         </button>
