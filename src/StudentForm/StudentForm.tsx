@@ -14,7 +14,7 @@ function StudentForm() {
     register,
     handleSubmit,
     setError,
-    watch,
+    resetField,
     control,
     formState: { errors },
   } = useForm({
@@ -64,6 +64,7 @@ function StudentForm() {
       verifyMaleTextField(gender);
       setIsDisabled(false);
     } else if (gender === "female") {
+      resetField("Hobbies");
       verifyFemaleTextField(gender);
     }
     setIsChecked(e.target.value);
@@ -86,23 +87,25 @@ function StudentForm() {
       </div>
       <div style={{ display: "flex" }}>
         <label>Gender: &nbsp;</label>
-        <div {...register("gender", { required: true })}>
+        <div>
           <input
-            name="gender"
+            {...register("gender", {
+              onChange: handleChange,
+            })}
             type="radio"
             checked={isChecked === "female"}
             value="female"
-            onChange={handleChange}
           />
           : Female
         </div>
-        <div {...register("gender", { required: true })}>
+        <div>
           <input
-            name="gender"
             type="radio"
             checked={isChecked === "male"}
             value="male"
-            onChange={handleChange}
+            {...register("gender", {
+              onChange: handleChange,
+            })}
           />
           : Male
         </div>
