@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 import { Controller, useFieldArray, useForm } from "react-hook-form";
 import "./StudentForm.scss";
+import { gql, useQuery } from "@apollo/client";
+import {
+  getBooks,
+  getSingleBook,
+  getCollections,
+} from "../GraphqlClient/queries";
 /*
   Using react hook form
   Ex 1: Click button submit, alert whole form value as object, which can display all info
@@ -10,6 +16,8 @@ import "./StudentForm.scss";
 */
 
 function StudentForm() {
+  const { loading, data, error } = useQuery(getCollections);
+  console.log(data);
   const {
     register,
     handleSubmit,
@@ -76,6 +84,12 @@ function StudentForm() {
   const handleAppend = () => {
     append({ title: "..." });
   };
+  if (loading) {
+    return <p>loading ... </p>;
+  }
+  if (error) {
+    return <p>Errors ...</p>;
+  }
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div>
