@@ -5,6 +5,7 @@ import { QueryClient } from "react-query";
 import CollectionOverViewContainer from "./CollectionOverViewContainer";
 import StudentForm from "StudentForm/StudentForm";
 import InsertForm from "./component/InsertForm";
+import DeleteForm from "component/DeleteForm";
 const { worker } = require("./mocks/browser");
 worker.start();
 
@@ -20,7 +21,8 @@ render(
   <ApolloProvider client={client}>
     {/* <StudentForm /> */}
     {/* <CollectionOverViewContainer /> */}
-    <InsertForm />
+    <DeleteForm />
+    {/* <InsertForm /> */}
   </ApolloProvider>,
   document.getElementById("root")
 );

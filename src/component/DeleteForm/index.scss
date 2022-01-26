@@ -1,0 +1,31 @@
+.form-spcex {
+    height: 100vh;
+    width: 100%;
+    table {
+        overflow: scroll;
+        display: inline-block;
+        width: 30%;
+        height: 50%;
+        tr {
+            display: inline-flex;
+            width: 100%;
+            th {
+                width: 30%;
+                padding: 10px;
+                color: initial;
+                margin-left: 2rem;
+                text-align: start;
+                position: sticky;
+            }
+            td {
+                width: 30%;
+                padding: 5px;
+                margin-left: 2rem;
+                margin-bottom: 20px;
+                border: 1px solid #555e7b;
+                border-radius: 10px;
+                text-align: center;
+            }
+        }
+    }
+}
