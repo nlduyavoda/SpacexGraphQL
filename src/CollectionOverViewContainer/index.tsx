@@ -52,7 +52,7 @@ export const INSERT_USER = gql`
 `;
 
 function CollectionOverViewContainer() {
-  const [addTodo, { loading, error, data }] = useMutation(INSERT_USER);
+  const [addTodo, { loading, error, data }] = useMutation(GET_USERS);
   return (
     <div>
       <form
