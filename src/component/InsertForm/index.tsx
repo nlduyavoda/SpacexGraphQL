@@ -3,25 +3,6 @@ import { useFormik } from "formik";
 import { response } from "msw";
 import "./index.scss";
 
-// export const INSERT_USER = gql`
-//     mutation insert_users({
-//       $name:String!,
-//       $rocket:String!
-//     }){
-//       insert_users(objects: [{
-//         $name:String!,
-//         $rocket:String!
-//       }]) {
-//         returning {
-//           id
-//           name
-//           rocket
-//           timestamp
-//           twitter
-//         }
-//       }
-//     }
-//   `;
 const INSERT_USER = gql`
   mutation insert_users($name: String, $rocket: String) {
     insert_users(objects: [{ name: $name, rocket: $rocket }]) {
@@ -50,7 +31,7 @@ export default function InsertForm(params) {
     console.log(data);
   }
   return (
-    <div>
+    <div className="insert-form">
       <form onSubmit={formik.handleSubmit}>
         <label htmlFor="email">Name</label>
         <input

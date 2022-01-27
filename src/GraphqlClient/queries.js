@@ -35,4 +35,23 @@ const getCollections = gql`
     }
   }
 `;
+ const INSERT_USER = gql`
+    mutation insert_users({
+      $name:String!,
+      $rocket:String!
+    }){
+      insert_users(objects: [{
+        $name:String!,
+        $rocket:String!
+      }]) {
+        returning {
+          id
+          name
+          rocket
+          timestamp
+          twitter
+        }
+      }
+    }
+  `;
 export { getBooks, getSingleBook, getCollections };

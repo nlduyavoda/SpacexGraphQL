@@ -1,31 +1,33 @@
 .form-spcex {
-    height: 100vh;
+    display: inline-flex;
     width: 100%;
     table {
-        overflow: scroll;
-        display: inline-block;
-        width: 30%;
-        height: 50%;
-        tr {
-            display: inline-flex;
-            width: 100%;
-            th {
-                width: 30%;
-                padding: 10px;
-                color: initial;
-                margin-left: 2rem;
-                text-align: start;
-                position: sticky;
-            }
-            td {
-                width: 30%;
-                padding: 5px;
-                margin-left: 2rem;
-                margin-bottom: 20px;
-                border: 1px solid #555e7b;
-                border-radius: 10px;
-                text-align: center;
-            }
-        }
+        width: 50%;
+    }
+    table th,
+    table td {
+        padding: 15px 30px;
+        text-align: left;
+    }
+    table th {
+        position: sticky;
+        color: #364d67;
+        font-weight: 600;
+        background-color: #f1f7fd;
+        top: 0px;
+    }
+    table th:last-child {
+        display: none;
+    }
+    table td {
+        margin-top: 48px;
+        background-color: white;
+    }
+    table td:hover{
+    cursor: pointer;
+    }
+  
+    table tbody tr {
+        border-top: 1px solid #f0f4f8;
     }
 }
