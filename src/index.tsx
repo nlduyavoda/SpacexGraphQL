@@ -5,7 +5,7 @@ import { QueryClient } from "react-query";
 import CollectionOverViewContainer from "./CollectionOverViewContainer";
 import StudentForm from "StudentForm/StudentForm";
 import InsertForm from "./component/InsertForm";
-import DeleteForm from "component/DeleteForm";
+import DeleteForm from "component/List";
 import UpdateForm from "./component/UpdateForm";
 
 const UDEMY = "https://www.crwn-clothing.com/";

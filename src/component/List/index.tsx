@@ -25,9 +25,9 @@ const DELETE_USER = gql`
     }
   }
 `;
-export default function DeleteForm() {
-  const props = useQuery(GET_LIST);
-  const [state, setState] = useState(props.data?.users ?? []);
+export default function List() {
+  const { data, error, loading, refetch } = useQuery(GET_LIST);
+  const [state, setState] = useState(data?.users ?? []);
   const [deleteToDo] = useMutation(DELETE_USER);
   const [ListIsEmpty, setListIsEmpty] = useState(false);
   const [userId, serUserId] = useState(null);
@@ -39,19 +39,20 @@ export default function DeleteForm() {
           _eq: id,
         },
       },
+    }).then(() => {
+      refetch(GET_LIST);
     });
-    const newData = props.data?.users.filter((item) => item.id !== id);
-    setState(newData);
   };
 
   useEffect(() => {
-    if (props.data?.users) {
-      setState(props.data?.users);
+    if (data?.users) {
+      setState(data?.users);
     }
-    if (props.data?.users.length === 0) {
+    if (data?.users.length === 0) {
       setListIsEmpty(true);
     }
-  }, [props.data?.users]);
+  }, [data?.users]);
+  
   return (
     <div className="form-spcex">
       <table>
@@ -61,7 +62,7 @@ export default function DeleteForm() {
           <th>ROCKET</th>
           <th></th>
         </tr>
-        {props.loading ? (
+        {loading ? (
           <>
             <div>...loading</div>
           </>
@@ -92,7 +93,7 @@ export default function DeleteForm() {
         )}
       </table>
       <UpdateForm userId={userId} />
-      <InsertForm />
+      <InsertForm refetch={refetch} />
     </div>
   );
 }
