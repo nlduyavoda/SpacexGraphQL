@@ -23,12 +23,10 @@ export default function InsertForm(params) {
       rocket: "Flash-01",
     },
     onSubmit: (values) => {
-      // console.log(values);
       addTodo({ variables: values });
     },
   });
   if (!loading) {
-    console.log(data);
   }
   return (
     <div className="insert-form">

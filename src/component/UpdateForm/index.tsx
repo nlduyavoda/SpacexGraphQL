@@ -1,5 +1,8 @@
-import { gql, useQuery } from "@apollo/client";
+import { gql, useMutation, useQuery } from "@apollo/client";
+import { useFormik } from "formik";
 import React, { useEffect, useState } from "react";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+
 import "./index.scss";
 type PropsType = {
   userId: string;
@@ -14,11 +17,17 @@ const USER_BY_ID = gql`
   }
 `;
 const UPDATE_USER = gql`
-  query users_by_pk($id: uuid!) {
-    users_by_pk(id: $id) {
-      id
-      name
-      rocket
+  mutation update_users(
+    $id: uuid_comparison_exp
+    $name: String
+    $rocket: String
+  ) {
+    update_users(where: { id: $id }, _set: { name: $name, rocket: $rocket }) {
+      returning {
+        id
+        name
+        rocket
+      }
     }
   }
 `;
@@ -28,22 +37,49 @@ export default function UpdateForm<PropsType>({ userId }) {
       id: userId,
     },
   });
+  const [updateForm, PropsMutation] = useMutation(UPDATE_USER);
+
   const [state, setState] = useState(data?.users_by_pk);
+  const formik = useFormik({
+    initialValues: {
+      name: "",
+      rocket: "",
+    },
+    onSubmit: (values) => {
+      console.log(values);
+      updateForm({
+        variables: {
+          id: {
+            _eq: state.id,
+          },
+          name: values.name,
+        },
+      });
+    },
+  });
   useEffect(() => {
     setState(data?.users_by_pk);
   }, [data?.users_by_pk]);
-  console.log(state);
+
   return (
     <div className="update-form">
       {state ? (
         <>
-          <form>
+          <form onSubmit={formik.handleSubmit}>
             <label>ID: </label>
-            <input defaultValue={state.id} />
+            <input name="id" defaultValue={state.id} />
             <label>NAME: </label>
-            <input defaultValue={state.name} />
+            <input
+              name="name"
+              defaultValue={state.name}
+              onChange={formik.handleChange}
+            />
             <label>ROCKET: </label>
-            <input defaultValue={state.rocket} />
+            <input
+              name="rocket"
+              defaultValue={state.rocket}
+              onChange={formik.handleChange}
+            />
             <button type="submit">UPDATE</button>
           </form>
         </>

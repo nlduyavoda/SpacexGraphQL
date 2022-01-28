@@ -17,7 +17,6 @@ import {
 
 function StudentForm() {
   const { loading, data, error } = useQuery(getCollections);
-  console.log(data);
   const {
     register,
     handleSubmit,
