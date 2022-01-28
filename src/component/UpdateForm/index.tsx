@@ -84,7 +84,7 @@ export default function UpdateForm<PropsType>({ userId }) {
           </form>
         </>
       ) : (
-        <h1>...Loading</h1>
+        <h1>Pick up a user to update this </h1>
       )}
     </div>
   );

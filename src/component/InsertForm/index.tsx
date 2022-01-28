@@ -14,7 +14,7 @@ const INSERT_USER = gql`
     }
   }
 `;
-export default function InsertForm(params) {
+export default function InsertForm({ refetchList }) {
   const [addTodo, { data, loading, error }] = useMutation(INSERT_USER);
 
   const formik = useFormik({
@@ -23,7 +23,9 @@ export default function InsertForm(params) {
       rocket: "Flash-01",
     },
     onSubmit: (values) => {
-      addTodo({ variables: values });
+      addTodo({ variables: values }).then(() => {
+        refetchList();
+      });
     },
   });
   if (!loading) {

@@ -1,20 +1,25 @@
 .form-spcex {
     display: inline-flex;
+    position: relative;
     width: 100%;
+    height: 100%;
     table {
-        width: 50%;
+        display: inline-flex;
+        flex-direction: column;
+        border: 1px solid;
+        width: 40rem;
+        height: 50vh;
+        overflow: scroll;
     }
     table th,
     table td {
-        padding: 15px 30px;
         text-align: left;
     }
     table th {
-        position: sticky;
+        width: 100%;
         color: #364d67;
-        font-weight: 600;
         background-color: #f1f7fd;
-        top: 0px;
+        top: 10px;
     }
     table th:last-child {
         display: none;
@@ -23,10 +28,10 @@
         margin-top: 48px;
         background-color: white;
     }
-    table td:hover{
-    cursor: pointer;
+    table td:hover {
+        cursor: pointer;
     }
-  
+
     table tbody tr {
         border-top: 1px solid #f0f4f8;
     }

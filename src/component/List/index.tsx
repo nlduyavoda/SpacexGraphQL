@@ -5,6 +5,7 @@ import Button from "../Button";
 import "./index.scss";
 import UpdateForm from "component/UpdateForm";
 import InsertForm from "component/InsertForm";
+import Loading from "component/Loading";
 const GET_LIST = gql`
   query users {
     users {
@@ -30,7 +31,7 @@ export default function List() {
   const [state, setState] = useState(data?.users ?? []);
   const [deleteToDo] = useMutation(DELETE_USER);
   const [ListIsEmpty, setListIsEmpty] = useState(false);
-  const [userId, serUserId] = useState(null);
+  const [userId, serUserId] = useState();
 
   const HandleRemove = (id: string) => {
     deleteToDo({
@@ -43,7 +44,9 @@ export default function List() {
       refetch(GET_LIST);
     });
   };
-
+  const handleInsert = () => {
+    refetch(GET_LIST);
+  };
   useEffect(() => {
     if (data?.users) {
       setState(data?.users);
@@ -52,7 +55,7 @@ export default function List() {
       setListIsEmpty(true);
     }
   }, [data?.users]);
-  
+
   return (
     <div className="form-spcex">
       <table>
@@ -63,13 +66,11 @@ export default function List() {
           <th></th>
         </tr>
         {loading ? (
-          <>
-            <div>...loading</div>
-          </>
+          <Loading />
         ) : (
           <>
             {ListIsEmpty ? (
-              <div>list is empty</div>
+              <h1>is loading</h1>
             ) : (
               <>
                 {state.map((item) => {
@@ -93,7 +94,7 @@ export default function List() {
         )}
       </table>
       <UpdateForm userId={userId} />
-      <InsertForm refetch={refetch} />
+      <InsertForm refetchList={handleInsert} />
     </div>
   );
 }
