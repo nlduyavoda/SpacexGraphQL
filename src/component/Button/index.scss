@@ -1,11 +1,12 @@
-button{
-    background: none;
-    border: none;
-    cursor: pointer;
-    img{
-        height: 25px;
-        width: 25px;
-        border-radius: 100%;
-        object-fit: contain;
+.btn-delete{
+    color: #D9534F;
+    svg{
+        height:20px;
+        width:20px;
+        transition: ease-in 0.25s;
+    }
+    svg:hover{
+        height:25px;
+        width:25px;
     }
 }

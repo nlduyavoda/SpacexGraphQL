@@ -6,6 +6,7 @@ import "./index.scss";
 import UpdateForm from "component/UpdateForm";
 import InsertForm from "component/InsertForm";
 import Loading from "component/Loading";
+import { AiFillEdit } from "react-icons/ai";
 const GET_LIST = gql`
   query users {
     users {
@@ -75,11 +76,19 @@ export default function List() {
               <>
                 {state.map((item) => {
                   return (
-                    <div className="table-item" key={item.id} onClick={() => serUserId(item.id)}>
+                    <div
+                      className="table-item"
+                      key={item.id}
+                      onClick={() => serUserId(item.id)}
+                    >
                       <td>{item.id}</td>
                       <td>{item.name ? item.name : "--/--"}</td>
                       <td>{item.rocket ? item.rocket : "--/--"}</td>
                       <td>
+                        <div className="btn-edit">
+                          <AiFillEdit />
+                        </div>
+
                         <Button
                           onClick={() => HandleRemove(item.id)}
                           itemId={item.id}

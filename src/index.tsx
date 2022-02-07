@@ -6,8 +6,9 @@ import CollectionOverViewContainer from "./CollectionOverViewContainer";
 import StudentForm from "StudentForm/StudentForm";
 import InsertForm from "./component/InsertForm";
 import List from "component/List";
-import Table from "component/Test";
+import Table from "component/FormikForm";
 import UpdateForm from "./component/UpdateForm";
+import FormikForm from "component/FormikForm";
 const UDEMY = "https://www.crwn-clothing.com/";
 const SPACEX = "https://api.spacex.land/graphql/";
 const client = new ApolloClient({
@@ -17,7 +18,7 @@ const client = new ApolloClient({
 
 render(
   <ApolloProvider client={client}>
-    {/* <StudentForm /> */}
+    {/* <FormikForm /> */}
     {/* <CollectionOverViewContainer /> */}
     <List />
     {/* <Table/> */}

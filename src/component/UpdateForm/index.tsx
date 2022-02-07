@@ -1,12 +1,8 @@
 import { gql, useMutation, useQuery } from "@apollo/client";
 import { useFormik } from "formik";
 import React, { useEffect, useState } from "react";
-import { Formik, Form, Field, ErrorMessage } from "formik";
-
 import "./index.scss";
-type PropsType = {
-  userId: string;
-};
+
 const USER_BY_ID = gql`
   query users_by_pk($id: uuid!) {
     users_by_pk(id: $id) {
@@ -53,6 +49,7 @@ export default function UpdateForm<PropsType>({ userId }) {
             _eq: state.id,
           },
           name: values.name,
+          rocket: values.rocket,
         },
       });
     },
@@ -63,6 +60,7 @@ export default function UpdateForm<PropsType>({ userId }) {
 
   return (
     <div className="update-form">
+      <h1>Form Update</h1>
       {state ? (
         <>
           <form onSubmit={formik.handleSubmit}>

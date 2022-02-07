@@ -33,10 +33,22 @@
     .table-item {
         border-radius: 10px;
         border: 1px solid #eee;
-        padding: 10px;
+        padding: 20px;
         margin-bottom: 10px;
         display: flex;
         justify-content: space-between;
+        .btn-edit{
+            color: #395B64;
+            svg{
+                height:20px;
+                width:20px;
+                transition: ease-in 0.25s;
+            }
+            svg:hover{
+                height:25px;
+                width:25px;
+            }
+        }
     }
     .table-item > td {
         width: $small;
@@ -49,6 +61,9 @@
         width: $wide;
     }
     .table-item > td:last-child {
+        display: flex;
+        flex-direction: row;
         width: $extra-small;
+        justify-content: space-between;
     }
 }

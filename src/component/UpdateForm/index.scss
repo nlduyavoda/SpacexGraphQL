@@ -1,19 +1,42 @@
+$padding: 10px;
+$border: 10px;
+$greenDefault: #2eb086;
+$borderColor: #eee;
 .update-form {
+    padding: 10px;
     top: 20px;
     position: sticky;
-    justify-content: center;
     display: flex;
+    align-items: center;
+    flex-direction: column;
     width: 50%;
-    height: 200px;
+    height: 300px;
     form {
         width: 30%;
+        height: 300px;
         display: flex;
         flex-direction: column;
-        input{
-            margin-bottom: 20px;
+        label {
+            padding: 5px;
         }
-        button{
-            border: 1px solid;
+        input {
+            padding: $padding;
+            height: 30px;
+            margin-bottom: 20px;
+            border: 2px solid $borderColor;
+            font-family: Roboto;
+            border-radius: 10px;
+        }
+        input:focus {
+            outline: none;
+            border: 2px solid $greenDefault;
+        }
+        button {
+            font-weight: bold;
+            border-radius: $border;
+            padding: $padding;
+            background: $greenDefault;
+            color: $borderColor;
         }
     }
 }
