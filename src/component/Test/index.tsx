@@ -58,13 +58,13 @@ export default function List() {
 
   return (
     <div className="form-spcex">
-      <table>
-        <div className="table-header">
-          <td>ID</td>
-          <td>NAME</td>
-          <td>ROCKET</td>
-          <td></td>
-        </div>
+      {/* <table>
+        <tr>
+          <th>ID</th>
+          <th>NAME</th>
+          <th>ROCKET</th>
+          <th></th>
+        </tr>
         {loading ? (
           <Loading />
         ) : (
@@ -75,7 +75,7 @@ export default function List() {
               <>
                 {state.map((item) => {
                   return (
-                    <div className="table-item" key={item.id} onClick={() => serUserId(item.id)}>
+                    <tr key={item.id} onClick={() => serUserId(item.id)}>
                       <td>{item.id}</td>
                       <td>{item.name ? item.name : "--/--"}</td>
                       <td>{item.rocket ? item.rocket : "--/--"}</td>
@@ -85,16 +85,45 @@ export default function List() {
                           itemId={item.id}
                         />
                       </td>
-                    </div>
+                    </tr>
                   );
                 })}
               </>
             )}
           </>
         )}
+      </table> */}
+      <table style={{ width: "100%" }}>
+        <div className="table-header">
+          <td>Emil</td>
+          <td>Tobias</td>
+          <td>Linus</td>
+          <td></td>
+        </div>
+        <>
+          {ListIsEmpty ? (
+            <h1>is loading</h1>
+          ) : (
+            <>
+              {state.map((item) => {
+                return (
+                  <div className="table-item" key={item.id} onClick={() => serUserId(item.id)}>
+                    <td>{item.id}</td>
+                    <td>{item.name ? item.name : "--/--"}</td>
+                    <td>{item.rocket ? item.rocket : "--/--"}</td>
+                    <td>
+                      <Button
+                        onClick={() => HandleRemove(item.id)}
+                        itemId={item.id}
+                      />
+                    </td>
+                  </div>
+                );
+              })}
+            </>
+          )}
+        </>
       </table>
-      <UpdateForm userId={userId} />
-      <InsertForm refetchList={handleInsert} />
     </div>
   );
 }

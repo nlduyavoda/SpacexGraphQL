@@ -6,6 +6,7 @@ import CollectionOverViewContainer from "./CollectionOverViewContainer";
 import StudentForm from "StudentForm/StudentForm";
 import InsertForm from "./component/InsertForm";
 import List from "component/List";
+import Table from "component/Test";
 import UpdateForm from "./component/UpdateForm";
 const UDEMY = "https://www.crwn-clothing.com/";
 const SPACEX = "https://api.spacex.land/graphql/";
@@ -19,6 +20,7 @@ render(
     {/* <StudentForm /> */}
     {/* <CollectionOverViewContainer /> */}
     <List />
+    {/* <Table/> */}
     {/* <InsertForm /> */}
   </ApolloProvider>,
   document.getElementById("root")
