@@ -5,9 +5,13 @@ import Button from "../Button";
 import "./index.scss";
 import InsertForm from "component/InsertForm";
 import Loading from "component/Loading";
-import { AiFillEdit, AiFillCheckCircle } from "react-icons/ai";
+import {
+  AiFillEdit,
+  AiFillCheckCircle,
+  AiOutlinePlus,
+  AiOutlineCloseSquare,
+} from "react-icons/ai";
 import swal from "sweetalert";
-
 const GET_LIST = gql`
   query users {
     users {
@@ -53,7 +57,6 @@ export default function List() {
     rocket: "",
   });
   const [ListIsEmpty, setListIsEmpty] = useState(false);
-  const [userId, serUserId] = useState();
   const [editing, setEditing] = useState<{ id: string; status: boolean }>({
     id: "",
     status: false,
@@ -112,6 +115,18 @@ export default function List() {
       refetch(GET_LIST);
     });
   }
+  const btnModal = document.getElementById("floating-btn");
+  const modal = document.getElementById("modal");
+  const btnClose = document.getElementsByClassName("close");
+  const handleOpenModal = () => {
+    modal.classList.remove("out");
+    modal.classList.add("open");
+  };
+  const handleClose = () => {
+    modal.classList.remove("open");
+    modal.classList.add("out");
+    swal("Good job!", "create successful!", "success");
+  };
   return (
     <div className="form-spcex">
       <table>
@@ -131,11 +146,7 @@ export default function List() {
               <>
                 {state.map((item) => {
                   return (
-                    <div
-                      className="table-item"
-                      key={item.id}
-                      onClick={() => serUserId(item.id)}
-                    >
+                    <div className="table-item" key={item.id}>
                       <td>{item.id}</td>
 
                       {item.id !== editing.id && editing ? (
@@ -208,7 +219,22 @@ export default function List() {
           </>
         )}
       </table>
-      <InsertForm refetchList={handleInsert} />
+      <button
+        className="floating-btn"
+        id="floating-btn"
+        onClick={handleOpenModal}
+      >
+        <AiOutlinePlus />
+      </button>
+      <div className="modal" id="modal">
+        <div className="modal-content ">
+          <span className="close" id="close" onClick={() => handleClose()}>
+            <AiOutlineCloseSquare />
+          </span>
+          <InsertForm refetchList={handleInsert} handleClose={handleClose} />
+        </div>
+      </div>
+      {/* <InsertForm refetchList={handleInsert} /> */}
     </div>
   );
 }

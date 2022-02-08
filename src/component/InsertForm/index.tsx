@@ -2,6 +2,7 @@ import { gql, useMutation, useQuery } from "@apollo/client";
 import { useFormik } from "formik";
 import { response } from "msw";
 import "./index.scss";
+import swal from "sweetalert";
 
 const INSERT_USER = gql`
   mutation insert_users($name: String, $rocket: String) {
@@ -14,7 +15,7 @@ const INSERT_USER = gql`
     }
   }
 `;
-export default function InsertForm({ refetchList }) {
+export default function InsertForm({ refetchList, handleClose }) {
   const [addTodo, { data, loading, error }] = useMutation(INSERT_USER);
 
   const formik = useFormik({
@@ -28,7 +29,8 @@ export default function InsertForm({ refetchList }) {
       });
     },
   });
-  if (!loading) {
+  if (loading) {
+    handleClose();
   }
   return (
     <div className="insert-form">
@@ -50,7 +52,7 @@ export default function InsertForm({ refetchList }) {
           onChange={formik.handleChange}
         />
 
-        <button type="submit">Submit</button>
+        <button type="submit">Add</button>
       </form>
     </div>
   );
