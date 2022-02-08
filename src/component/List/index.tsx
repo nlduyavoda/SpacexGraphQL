@@ -27,10 +27,30 @@ const DELETE_USER = gql`
     }
   }
 `;
+const UPDATE_USER = gql`
+  mutation update_users(
+    $id: uuid_comparison_exp
+    $name: String
+    $rocket: String
+  ) {
+    update_users(where: { id: $id }, _set: { name: $name, rocket: $rocket }) {
+      returning {
+        id
+        name
+        rocket
+      }
+    }
+  }
+`;
 export default function List() {
   const { data, error, loading, refetch } = useQuery(GET_LIST);
   const [state, setState] = useState(data?.users ?? []);
   const [deleteToDo] = useMutation(DELETE_USER);
+  const [updateForm] = useMutation(UPDATE_USER);
+  const [values, setValues] = useState({
+    name: "",
+    rocket: "",
+  });
   const [ListIsEmpty, setListIsEmpty] = useState(false);
   const [userId, serUserId] = useState();
   const [editing, setEditing] = useState<{ id: string; status: boolean }>({
@@ -59,7 +79,29 @@ export default function List() {
       setListIsEmpty(true);
     }
   }, [data?.users]);
-
+  const handleUpdate = (values) => {
+    if (values.name.length > 0 && values.name.length > 0) {
+      setEditing({
+        id: "",
+        status: false,
+      });
+      updateForm({
+        variables: {
+          id: {
+            _eq: values.id,
+          },
+          name: values.name,
+          rocket: values.rocket,
+        },
+      });
+    } else {
+      console.log("name or rocket is empty");
+      setEditing({
+        id: "",
+        status: false,
+      });
+    }
+  };
   return (
     <div className="form-spcex">
       <table>
@@ -96,12 +138,19 @@ export default function List() {
                           <td>
                             <input
                               type="text"
+                              name="name"
+                              onChange={(e) =>
+                                setValues({ ...values, name: e.target.value })
+                              }
                               defaultValue={item.name ? item.name : "--/--"}
                             />
                           </td>
                           <td>
                             <input
                               type="text"
+                              onChange={(e) =>
+                                setValues({ ...values, rocket: e.target.value })
+                              }
                               defaultValue={item.rocket ? item.rocket : "--/--"}
                             />
                           </td>
@@ -124,12 +173,13 @@ export default function List() {
                         ) : (
                           <div
                             className="btn-check"
-                            onClick={() => {
-                              setEditing({
-                                id: "",
-                                status: false,
-                              });
-                            }}
+                            onClick={() =>
+                              handleUpdate({
+                                id: item.id,
+                                name: values.name,
+                                rocket: values.rocket,
+                              })
+                            }
                           >
                             <AiFillCheckCircle />
                           </div>
