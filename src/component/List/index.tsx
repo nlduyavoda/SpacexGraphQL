@@ -3,10 +3,11 @@ import { useEffect, useState } from "react";
 import { idText } from "typescript";
 import Button from "../Button";
 import "./index.scss";
-import UpdateForm from "component/UpdateForm";
 import InsertForm from "component/InsertForm";
 import Loading from "component/Loading";
 import { AiFillEdit, AiFillCheckCircle } from "react-icons/ai";
+import swal from "sweetalert";
+
 const GET_LIST = gql`
   query users {
     users {
@@ -45,8 +46,8 @@ const UPDATE_USER = gql`
 export default function List() {
   const { data, error, loading, refetch } = useQuery(GET_LIST);
   const [state, setState] = useState(data?.users ?? []);
-  const [deleteToDo] = useMutation(DELETE_USER);
-  const [updateForm] = useMutation(UPDATE_USER);
+  const [deleteToDo, deleteProps] = useMutation(DELETE_USER);
+  const [updateForm, UpdateProps] = useMutation(UPDATE_USER);
   const [values, setValues] = useState({
     name: "",
     rocket: "",
@@ -80,7 +81,7 @@ export default function List() {
     }
   }, [data?.users]);
   const handleUpdate = (values) => {
-    if (values.name.length > 0 && values.name.length > 0) {
+    if (values.name.length > 0 && values.rocket.length > 0) {
       setEditing({
         id: "",
         status: false,
@@ -95,13 +96,15 @@ export default function List() {
         },
       });
     } else {
-      console.log("name or rocket is empty");
       setEditing({
         id: "",
         status: false,
       });
     }
   };
+  if (UpdateProps.data) {
+    swal("Good job!", "This guy is updated!", "success");
+  }
   return (
     <div className="form-spcex">
       <table>
@@ -198,7 +201,6 @@ export default function List() {
           </>
         )}
       </table>
-      <UpdateForm userId={userId} />
       <InsertForm refetchList={handleInsert} />
     </div>
   );
