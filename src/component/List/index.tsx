@@ -65,8 +65,6 @@ export default function List() {
           _eq: id,
         },
       },
-    }).then(() => {
-      refetch(GET_LIST);
     });
   };
   const handleInsert = () => {
@@ -80,20 +78,24 @@ export default function List() {
       setListIsEmpty(true);
     }
   }, [data?.users]);
-  const handleUpdate = (values) => {
-    if (values.name.length > 0 && values.rocket.length > 0) {
-      setEditing({
-        id: "",
-        status: false,
-      });
-      updateForm({
-        variables: {
-          id: {
-            _eq: values.id,
+  const handleUpdate = (updateValues) => {
+    if (updateValues.name.length > 0 && updateValues.rocket.length > 0) {
+      swal("Confirm, Please !", {
+        buttons: ["cancel", "update"],
+      }).then((value) => {
+        setEditing({
+          id: "",
+          status: false,
+        });
+        updateForm({
+          variables: {
+            id: {
+              _eq: updateValues.id,
+            },
+            name: updateValues.name,
+            rocket: updateValues.rocket,
           },
-          name: values.name,
-          rocket: values.rocket,
-        },
+        });
       });
     } else {
       setEditing({
@@ -102,8 +104,13 @@ export default function List() {
       });
     }
   };
-  if (UpdateProps.data) {
+  if (UpdateProps.loading) {
     swal("Good job!", "This guy is updated!", "success");
+  }
+  if (deleteProps.loading) {
+    swal("Are you sure !", "", "warning").then(() => {
+      refetch(GET_LIST);
+    });
   }
   return (
     <div className="form-spcex">
