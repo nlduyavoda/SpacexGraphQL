@@ -6,7 +6,7 @@ import "./index.scss";
 import UpdateForm from "component/UpdateForm";
 import InsertForm from "component/InsertForm";
 import Loading from "component/Loading";
-import { AiFillEdit } from "react-icons/ai";
+import { AiFillEdit, AiFillCheckCircle } from "react-icons/ai";
 const GET_LIST = gql`
   query users {
     users {
@@ -33,7 +33,10 @@ export default function List() {
   const [deleteToDo] = useMutation(DELETE_USER);
   const [ListIsEmpty, setListIsEmpty] = useState(false);
   const [userId, serUserId] = useState();
-
+  const [editing, setEditing] = useState<{ id: string; status: boolean }>({
+    id: "",
+    status: false,
+  });
   const HandleRemove = (id: string) => {
     deleteToDo({
       variables: {
@@ -82,12 +85,55 @@ export default function List() {
                       onClick={() => serUserId(item.id)}
                     >
                       <td>{item.id}</td>
-                      <td>{item.name ? item.name : "--/--"}</td>
-                      <td>{item.rocket ? item.rocket : "--/--"}</td>
+
+                      {item.id !== editing.id && editing ? (
+                        <>
+                          <td>{item.name ? item.name : "--/--"}</td>
+                          <td>{item.rocket ? item.rocket : "--/--"}</td>
+                        </>
+                      ) : (
+                        <>
+                          <td>
+                            <input
+                              type="text"
+                              defaultValue={item.name ? item.name : "--/--"}
+                            />
+                          </td>
+                          <td>
+                            <input
+                              type="text"
+                              defaultValue={item.rocket ? item.rocket : "--/--"}
+                            />
+                          </td>
+                        </>
+                      )}
+
                       <td>
-                        <div className="btn-edit">
-                          <AiFillEdit />
-                        </div>
+                        {item.id !== editing.id && editing ? (
+                          <div
+                            className="btn-edit"
+                            onClick={() =>
+                              setEditing({
+                                id: item.id,
+                                status: !editing.status,
+                              })
+                            }
+                          >
+                            <AiFillEdit />
+                          </div>
+                        ) : (
+                          <div
+                            className="btn-check"
+                            onClick={() => {
+                              setEditing({
+                                id: "",
+                                status: false,
+                              });
+                            }}
+                          >
+                            <AiFillCheckCircle />
+                          </div>
+                        )}
 
                         <Button
                           onClick={() => HandleRemove(item.id)}

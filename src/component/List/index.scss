@@ -2,6 +2,7 @@
     $wide: 400px;
     $small: 100px;
     $extra-small: 50px;
+    $whiteDefault:#eee;
     display: inline-flex;
     position: relative;
     width: 100%;
@@ -32,7 +33,7 @@
 
     .table-item {
         border-radius: 10px;
-        border: 1px solid #eee;
+        border: 1px solid $whiteDefault;
         padding: 20px;
         margin-bottom: 10px;
         display: flex;
@@ -49,12 +50,29 @@
                 width:25px;
             }
         }
+        .btn-check{
+            color: #91C483;
+            svg{
+                height:20px;
+                width:20px;
+                transition: ease-in 0.25s;
+            }
+            svg:hover{
+                height:25px;
+                width:25px;
+            }
+        }
+        input{
+            border: 2px solid $whiteDefault;
+            height: 20px;
+            border-radius: 10px;
+        }
     }
     .table-item > td {
         width: $small;
     }
     .table-item:hover {
-        background-color: #eee;
+        background-color: $whiteDefault;
         cursor: pointer;
     }
     .table-item > td:first-child {
