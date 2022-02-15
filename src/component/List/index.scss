@@ -126,7 +126,7 @@
         vertical-align: middle;
         .modal-content {
             background: white;
-            padding: 30px;
+            padding: 50px;
             width: 30%;
             height: 30%;
             display: inline-flex;
@@ -144,6 +144,11 @@
                     height: 25px;
                     width: 25px;
                     color: #fc4f4f;
+                }
+            }
+            .close:hover{
+                svg{
+                    color: red;
                 }
             }
         }

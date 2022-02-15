@@ -7,10 +7,10 @@ import StudentForm from "StudentForm/StudentForm";
 import InsertForm from "./component/InsertForm";
 import List from "component/List";
 import Table from "component/FormikForm";
-import UpdateForm from "./component/UpdateForm";
 import FormikForm from "component/FormikForm";
 const UDEMY = "https://www.crwn-clothing.com/";
 const SPACEX = "https://api.spacex.land/graphql/";
+const Pokemon = "https://graphql-pokemon2.vercel.app";
 const client = new ApolloClient({
   uri: SPACEX,
   cache: new InMemoryCache(),
@@ -18,11 +18,7 @@ const client = new ApolloClient({
 
 render(
   <ApolloProvider client={client}>
-    {/* <FormikForm /> */}
-    {/* <CollectionOverViewContainer /> */}
     <List />
-    {/* <Table/> */}
-    {/* <InsertForm /> */}
   </ApolloProvider>,
   document.getElementById("root")
 );

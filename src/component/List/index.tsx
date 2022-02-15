@@ -1,6 +1,5 @@
 import { gql, useMutation, useQuery } from "@apollo/client";
 import { useEffect, useState } from "react";
-import { idText } from "typescript";
 import Button from "../Button";
 import "./index.scss";
 import InsertForm from "component/InsertForm";
@@ -82,30 +81,28 @@ export default function List() {
     }
   }, [data?.users]);
   const handleUpdate = (updateValues) => {
-    if (updateValues.name.length > 0 && updateValues.rocket.length > 0) {
-      swal("Confirm, Please !", {
-        buttons: ["cancel", "update"],
-      }).then((value) => {
-        setEditing({
-          id: "",
-          status: false,
-        });
-        updateForm({
-          variables: {
-            id: {
-              _eq: updateValues.id,
-            },
-            name: updateValues.name,
-            rocket: updateValues.rocket,
-          },
-        });
-      });
-    } else {
+    swal("Confirm, Please !", {
+      buttons: ["cancel", "update"],
+    }).then((value) => {
       setEditing({
         id: "",
         status: false,
       });
-    }
+      updateForm({
+        variables: {
+          id: {
+            _eq: updateValues.id,
+          },
+          name: !!updateValues.name
+            ? updateValues.name
+            : updateValues.defaultName,
+          rocket: !!updateValues.rocket
+            ? updateValues.rocket
+            : updateValues.defaultRocket,
+        },
+      });
+    });
+    console.log(updateValues);
   };
   if (UpdateProps.loading) {
     swal("Good job!", "This guy is updated!", "success");
@@ -125,7 +122,6 @@ export default function List() {
   const handleClose = () => {
     modal.classList.remove("open");
     modal.classList.add("out");
-    swal("Good job!", "create successful!", "success");
   };
   return (
     <div className="form-spcex">
@@ -199,6 +195,8 @@ export default function List() {
                                 id: item.id,
                                 name: values.name,
                                 rocket: values.rocket,
+                                defaultName: item.name,
+                                defaultRocket: item.rocket,
                               })
                             }
                           >
@@ -234,7 +232,6 @@ export default function List() {
           <InsertForm refetchList={handleInsert} handleClose={handleClose} />
         </div>
       </div>
-      {/* <InsertForm refetchList={handleInsert} /> */}
     </div>
   );
 }
