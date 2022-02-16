@@ -2,6 +2,10 @@ import { gql, useQuery } from "@apollo/client";
 import Button from "component/Button";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import "./index.scss";
+import styled from "styled-components";
+import ButtonStyled from "component/Share/StyledComponent";
+import { ButtonCart } from "component/Share/ButtonShared";
+import { Carts } from "component/Carts";
 const GET_LAUNCHES = gql`
   query getLaunches($limit: Int) {
     launchesPast(limit: $limit) {
@@ -24,6 +28,10 @@ function Lauches() {
   const handleOnClick = (params) => {
     console.log("clicked");
   };
+  const FloatingButton = styled.div`
+    border: 2px solid palevioletred;
+  `;
+
   return (
     <div className="Productlist">
       {error
@@ -50,6 +58,7 @@ function Lauches() {
                   <div className="price">$180</div>
                   <div className="pay">
                     <Button
+                      styled={null}
                       item={mission_name}
                       handleOnClick={handleOnClick}
                       Icon={AiOutlineShoppingCart}
@@ -59,6 +68,11 @@ function Lauches() {
               </div>
             </div>
           ))}
+      <ButtonStyled
+        className={"cart-button"}
+        Icon={AiOutlineShoppingCart}
+        ButtonCart={ButtonCart}
+      />
     </div>
   );
 }

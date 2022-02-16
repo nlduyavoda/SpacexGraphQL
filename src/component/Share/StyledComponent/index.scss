@@ -1,0 +1,13 @@
+button:hover,button:focus{
+    .shopping-carts{
+        position: absolute;
+        height: 300px;
+        width: 600px;
+        border: 2px solid #585858;
+        background-color: white;
+        z-index: 3;
+        top: 110%;
+        right: 0;
+        border-radius: 20px 0px 20px 20px ;
+    }
+}

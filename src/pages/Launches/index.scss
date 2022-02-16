@@ -5,10 +5,11 @@
     --borderColor: #d6d5d6;
     display: flex;
     flex-wrap: wrap;
-    height: 100vh;
+    height: 100%;
     width: 100%;
     display: flex;
     box-sizing: border-box;
+    position: relative;
 }
 @media screen and (max-width: 1200px) {
     .Productlist {
@@ -23,6 +24,7 @@
     }
 }
 .item {
+    position: relative;
     box-shadow: 0px 0px 5px;
     width: calc(calc(100% / var(--item-horizontal)) - 40px);
     height: calc(calc(100% / var(--item-vertical)) - 20px);
