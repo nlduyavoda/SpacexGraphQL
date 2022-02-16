@@ -5,8 +5,8 @@ import Launches from "./pages/Launches";
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<List />} />
-      <Route path="launches" element={<Launches />} />
+      <Route path="launches" element={<List />} />
+      <Route path="/" element={<Launches />} />
     </Routes>
   );
 }

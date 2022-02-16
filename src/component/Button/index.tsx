@@ -1,10 +1,10 @@
 import "./index.scss";
-import { AiFillDelete } from "react-icons/ai";
 
-export default function Button({ itemId, onClick }) {
+export default function Button(props: any) {
+  const { item, handleOnClick, Icon } = props;
   return (
-    <div className="btn-delete" onClick={onClick}>
-      <AiFillDelete />
+    <div className="btn-" onClick={handleOnClick}>
+      <Icon />
     </div>
   );
 }

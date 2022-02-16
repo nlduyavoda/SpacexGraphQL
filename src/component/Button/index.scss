@@ -1,12 +1,23 @@
-.btn-delete{
-    color: #D9534F;
-    svg{
-        height:20px;
-        width:20px;
-        transition: ease-in 0.25s;
+.btn- {
+    cursor: pointer;
+    display: flex;
+    color: #585858;
+    border: 2px solid #585858;
+    width: 100px;
+    height: 50px;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+    svg {
+        height: 30px;
+        width: 30px;
+        transition: ease-in 0.1s;
     }
-    svg:hover{
-        height:25px;
-        width:25px;
+  
+}
+.btn-:hover{
+    svg {
+        height: 35px;
+        width: 35px;
     }
 }
