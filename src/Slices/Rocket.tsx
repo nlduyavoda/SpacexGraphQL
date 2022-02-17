@@ -1,11 +1,30 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+type launch = {
+  mission_name: string;
+};
+type launchSliceState = {
+  launches: launch[];
+};
 
+const initialState: launchSliceState = {
+  launches: [],
+};
+export const launchSlice = createSlice({
+  name: "launch",
+  initialState,
+  reducers: {
+    addLauches: (state, action: PayloadAction<string>) => {
+      state.launches = [
+        ...state.launches,
+        {
+          mission_name: action.payload,
+        },
+      ];
+    },
+  },
+});
+const { actions, reducer } = launchSlice;
 
-// export const RocketSlice = createSlice({
-//   name: "",
-//   initialState: "",
-//   reducer: {
-//     [pokemonApi.reducerPath]: pokemonApi.reducer,
-//   },
-// });
+export const { addLauches } = actions;
+
+export default reducer;

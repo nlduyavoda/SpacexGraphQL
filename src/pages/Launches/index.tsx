@@ -6,31 +6,27 @@ import styled from "styled-components";
 import ButtonStyled from "component/Share/StyledComponent";
 import { ButtonCart } from "component/Share/ButtonShared";
 import { Carts } from "component/Carts";
-const GET_LAUNCHES = gql`
-  query getLaunches($limit: Int) {
-    launchesPast(limit: $limit) {
-      mission_name
-      details
-      links {
-        flickr_images
-      }
-    }
-  }
-`;
-const getRandomImg = (imgs) => imgs[Math.floor(Math.random() * imgs.length)];
+import { GET_LAUNCHES } from "../../GraphqlClient/queries";
+import { addLauches } from "../../Slices/Rocket";
+import { useDispatch, useSelector } from "react-redux";
 
+const getRandomImg = (imgs) => imgs[Math.floor(Math.random() * imgs.length)];
 function Lauches() {
   const { error, loading, data } = useQuery(GET_LAUNCHES, {
     variables: {
       limit: 10,
     },
   });
-  const handleOnClick = (params) => {
-    console.log("clicked");
+  const dispatch = useDispatch();
+  const launches = useSelector((state) => state);
+
+  const handleOnClick = (mission_name: string) => {
+    dispatch(addLauches(mission_name));
   };
   const FloatingButton = styled.div`
     border: 2px solid palevioletred;
   `;
+  console.log(launches);
 
   return (
     <div className="Productlist">
@@ -60,7 +56,7 @@ function Lauches() {
                     <Button
                       styled={null}
                       item={mission_name}
-                      handleOnClick={handleOnClick}
+                      handleOnClick={() => handleOnClick(mission_name)}
                       Icon={AiOutlineShoppingCart}
                     ></Button>
                   </div>
@@ -69,6 +65,7 @@ function Lauches() {
             </div>
           ))}
       <ButtonStyled
+        launches={launches}
         className={"cart-button"}
         Icon={AiOutlineShoppingCart}
         ButtonCart={ButtonCart}

@@ -31,3 +31,13 @@ button:focus {
      display: none;
     }
 }
+.amount{
+    position: absolute;
+    height: 20px;
+    width: 20px;
+   border-radius: 50%;
+   background-color: red;
+    color: white;
+    top: 20%;
+    right: 10%;
+}
