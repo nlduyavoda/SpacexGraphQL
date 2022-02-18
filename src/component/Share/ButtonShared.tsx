@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const ButtonCart = styled.div`
+export const ButtonCart = styled.button`
   cursor: pointer;
   display: flex;
   color: #92a9bd;
@@ -10,7 +10,7 @@ export const ButtonCart = styled.div`
   border-radius: 20%;
   align-items: center;
   justify-content: center;
-  background-color: #008e89;
+  background-color: #1c658c;
   left: 96%;
   z-index: 3;
   position: fixed;
@@ -28,3 +28,13 @@ export const ButtonCart = styled.div`
   }
 `;
 export const Carts = styled.div``;
+export const CardinalNumber = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+export const LoadingImage = styled.img`
+  height: 200px;
+  width: 200px;
+  border-radius: 20%;
+`;

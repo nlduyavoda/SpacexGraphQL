@@ -1,5 +1,6 @@
 import "./index.scss";
-import { Carts } from "../ButtonShared";
+import { Carts, CardinalNumber, LoadingImage } from "../ButtonShared";
+import styled from "styled-components";
 import { useEffect, useState } from "react";
 export default function ButtonStyled(props: any) {
   const { Icon, ButtonCart, className, launches } = props;
@@ -8,25 +9,43 @@ export default function ButtonStyled(props: any) {
   useEffect(() => {
     setCarts(launches);
   }, [launches]);
+
   return (
     <ButtonCart className={className}>
       <Icon />
       <Carts className={ClassName}>
-        <div className="title">Carts</div>
+        <div className="title">カート</div>
         <div className="cart-items">
-          {launches.map((cart, index) => {
-            return (
-              <div key={index} className="cart-item">
-                <div className="cart-item-img">
-                  <img src={cart.image.flickr_images[0]} alt="" />
-                </div>
-                <div className="cart-item-infor">
-                  {cart.name}
-                  <div> $180</div>
-                </div>
-              </div>
-            );
-          })}
+          {carts.length > 0 ? (
+            <>
+              {launches.map((cart, index) => {
+                return (
+                  <div key={index} className="cart-item">
+                    <CardinalNumber> {index + 1}</CardinalNumber>
+                    <div className="cart-item-img">
+                      <img
+                        src={
+                          cart.image.flickr_images[0]
+                            ? cart.image.flickr_images[0]
+                            : "https://cdn.dribbble.com/users/1336327/screenshots/5905241/media/d7af04715fa7a7048bed3d2a697a9c91.gif"
+                        }
+                        alt=""
+                      />
+                    </div>
+                    <div className="cart-item-infor">
+                      {cart.name}
+                      <div> $180</div>
+                    </div>
+                  </div>
+                );
+              })}
+            </>
+          ) : (
+            <div>
+              <LoadingImage src="https://i.pinimg.com/originals/1c/88/83/1c8883a1768f2f77caf0371d49a68dc2.gif"></LoadingImage>
+              <h2>カートは空です</h2>
+            </div>
+          )}
         </div>
       </Carts>
       <div className="amount">{carts.length}</div>
