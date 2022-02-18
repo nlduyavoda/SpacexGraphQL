@@ -1,10 +1,10 @@
 import { configureStore, PayloadAction } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
-import launchReducer from "Slices/Rocket";
+import launchReducer, { launchSlice } from "Slices/Rocket";
 
 export const store = configureStore({
   reducer: {
-    launch: launchReducer,
+    launchList: launchSlice.reducer,
   },
 });
 export type RootState = ReturnType<typeof store.getState>;

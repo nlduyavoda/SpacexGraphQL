@@ -1,43 +1,81 @@
-button:hover,
-button:focus {
-    .shopping-carts {
-        position: absolute;
-        height: 300px;
-        width: 300px;
-        border: 2px solid #eee;
-        border-radius: 20px 0px 20px 20px;
-        background-color: white;
-        z-index: 3;
-        top: 110%;
-        right: 0;
-        padding: 20px;
-        overflow-y: scroll;
-        transition: ease 0.25s;
+.title{
+    height: 10%;
+    top: 0;
+    left: 50%;
+    position: sticky;
+    background-color: white;
+    color: #008e89;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.6rem;
+    font-weight: bold;
+    padding: 10px;
+}
+// button:hover,
+// button:focus {
+.shopping-carts {
+    position: absolute;
+    height: 300px;
+    width: 300px;
+    border: 3px solid #008e89;
+    border-radius: 20px 0px 20px 20px;
+    background-color: white;
+    z-index: 3;
+    top: 110%;
+    right: 0;
+    overflow-y: scroll;
+    transition: ease 0.25s;
+    padding: 0px 20px 20px 20px ;
+    .cart-items{
+        margin-top: 20px;
         .cart-item {
-            display: block;
+            margin-bottom: 10%;
+            display: flex;
+            font-size: 1.1rem;
             color: initial;
             width: 300px;
             height: 50px;
-            font-size: 1.6rem;
-            border: 1px solid #eee;
+            font-size: 1.1rem;
             margin-bottom: 20px;
+            text-align: start;
+            &-img {
+                margin-right: 10%;
+                padding: 0;
+                img {
+                    height: 60px;
+                    width: 60px;
+                    object-fit: cover;
+                    border-radius: 20%;
+                }
+            }
+    
+            &-infor {
+                display: flex;
+                flex-direction: column;
+            }
         }
     }
+
 }
-.shopping-carts {
-    width: 0;
-    height: 0;
-    .cart-item {
-     display: none;
-    }
-}
-.amount{
+// }
+// .shopping-carts {
+//     width: 0;
+//     height: 0;
+//     .cart-item {
+//         display: none;
+//     }
+// }
+.amount {
     position: absolute;
     height: 20px;
     width: 20px;
-   border-radius: 50%;
-   background-color: red;
+    border-radius: 50%;
+    background-color: #b8405e;
     color: white;
     top: 20%;
     right: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

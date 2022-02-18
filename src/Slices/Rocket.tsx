@@ -1,10 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-type launch = {
-  mission_name: string;
-};
-type launchSliceState = {
-  launches: launch[];
-};
+import { cartType, launchSliceState } from "../Types";
 
 const initialState: launchSliceState = {
   launches: [],
@@ -13,11 +8,13 @@ export const launchSlice = createSlice({
   name: "launch",
   initialState,
   reducers: {
-    addLauches: (state, action: PayloadAction<string>) => {
+    addLauches: (state, action: PayloadAction<cartType>) => {
       state.launches = [
         ...state.launches,
         {
-          mission_name: action.payload,
+          name: action.payload.name,
+          image: action.payload.image,
+          details: action.payload.details,
         },
       ];
     },

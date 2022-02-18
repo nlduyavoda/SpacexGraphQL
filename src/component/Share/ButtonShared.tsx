@@ -1,25 +1,30 @@
 import styled from "styled-components";
 
-export const ButtonCart = styled.button`
+export const ButtonCart = styled.div`
   cursor: pointer;
   display: flex;
   color: #92a9bd;
   border: none;
-  width: 5rem;
-  height: 5rem;
-  border-radius: 50%;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 20%;
   align-items: center;
   justify-content: center;
-  background-color: #eee;
-  top: 2vh;
-  right: 2vh;
-  z-index: 2;
-  position: absolute;
-  transition: ease 0.25s;
+  background-color: #008e89;
+  left: 96%;
+  z-index: 3;
+  position: fixed;
+  transition: ease-in 0.25s;
   svg {
-    height: 40px;
-    width: 40px;
-    transition: ease-in 0.1s;
+    color: white;
+    height: 30px;
+    width: 30px;
+    transition: ease-in 0.25s;
+  }
+  :hover,
+  :focus {
+    width: 4.5rem;
+    height: 4.5rem;
   }
 `;
 export const Carts = styled.div``;

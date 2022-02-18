@@ -1,16 +1,16 @@
-import { gql, useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import Button from "component/Button";
-import { AiOutlineShoppingCart } from "react-icons/ai";
-import "./index.scss";
-import styled from "styled-components";
-import ButtonStyled from "component/Share/StyledComponent";
 import { ButtonCart } from "component/Share/ButtonShared";
-import { Carts } from "component/Carts";
+import ButtonStyled from "component/Share/StyledComponent";
+import { AiOutlineShoppingCart } from "react-icons/ai";
+import { useDispatch, useSelector } from "react-redux";
+import styled from "styled-components";
 import { GET_LAUNCHES } from "../../GraphqlClient/queries";
 import { addLauches } from "../../Slices/Rocket";
-import { useDispatch, useSelector } from "react-redux";
+import "./index.scss";
+import { RootState } from "../../store";
+import { cartType } from "../../Types";
 
-const getRandomImg = (imgs) => imgs[Math.floor(Math.random() * imgs.length)];
 function Lauches() {
   const { error, loading, data } = useQuery(GET_LAUNCHES, {
     variables: {
@@ -18,18 +18,22 @@ function Lauches() {
     },
   });
   const dispatch = useDispatch();
-  const launches = useSelector((state) => state);
+  const res = useSelector((state: RootState) => state.launchList.launches);
 
-  const handleOnClick = (mission_name: string) => {
-    dispatch(addLauches(mission_name));
+  const handleOnClick = (launches: cartType) => {
+    dispatch(addLauches(launches));
   };
   const FloatingButton = styled.div`
     border: 2px solid palevioletred;
   `;
-  console.log(launches);
-
   return (
     <div className="Productlist">
+      <ButtonStyled
+        launches={res}
+        className={"cart-button"}
+        Icon={AiOutlineShoppingCart}
+        ButtonCart={ButtonCart}
+      />
       {error
         ? "Error!"
         : loading
@@ -56,7 +60,13 @@ function Lauches() {
                     <Button
                       styled={null}
                       item={mission_name}
-                      handleOnClick={() => handleOnClick(mission_name)}
+                      handleOnClick={() =>
+                        handleOnClick({
+                          name: mission_name,
+                          image: links,
+                          details: details,
+                        })
+                      }
                       Icon={AiOutlineShoppingCart}
                     ></Button>
                   </div>
@@ -64,12 +74,6 @@ function Lauches() {
               </div>
             </div>
           ))}
-      <ButtonStyled
-        launches={launches}
-        className={"cart-button"}
-        Icon={AiOutlineShoppingCart}
-        ButtonCart={ButtonCart}
-      />
     </div>
   );
 }
