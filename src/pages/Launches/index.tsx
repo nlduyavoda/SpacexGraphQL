@@ -12,7 +12,6 @@ import { RootState } from "../../store";
 import { cartType } from "../../Types";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useState } from "react";
-
 function Lauches() {
   const [limitState, setLimitState] = useState(10);
   const { error, loading, data, refetch } = useQuery(GET_LAUNCHES, {
