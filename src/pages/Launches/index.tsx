@@ -48,73 +48,45 @@ function Lauches() {
         "Loading..."
       ) : (
         <>
-          <InfiniteScroll
-            dataLength={data.launchesPast.length} //This is important field to render the next data
-            next={() => handleLoading}
-            hasMore={true}
-            loader={<h4>Loading...</h4>}
-            endMessage={
-              <p style={{ textAlign: "center" }}>
-                <b>Yay! You have seen it all</b>
-              </p>
-            }
-            // below props only if you need pull down functionality
-            refreshFunction={this.refresh}
-            pullDownToRefresh
-            pullDownToRefreshThreshold={50}
-            pullDownToRefreshContent={
-              <h3 style={{ textAlign: "center" }}>
-                &#8595; Pull down to refresh
-              </h3>
-            }
-            releaseToRefreshContent={
-              <h3 style={{ textAlign: "center" }}>
-                &#8593; Release to refresh
-              </h3>
-            }
-          >
-            {data.launchesPast.map(
-              ({ mission_name, details, links }, index) => (
-                <div className="item" key={index}>
-                  <div className="item_image">
-                    <img
-                      src={
-                        links.flickr_images.length !== 0
-                          ? links.flickr_images
-                          : "https://cdn.dribbble.com/users/1336327/screenshots/5905241/media/d7af04715fa7a7048bed3d2a697a9c91.gif"
-                      }
-                      alt={mission_name}
-                    />
-                  </div>
-                  <div className="item_information">
-                    <div className="information_top">
-                      <div className="product-name">
-                        {mission_name}
-                        センチネル-6マイケルフライリヒ
-                      </div>
-                    </div>
-                    <div className="information_bottom">
-                      <div className="price">$180</div>
-                      <div className="pay">
-                        <Button
-                          styled={null}
-                          item={mission_name}
-                          handleOnClick={() =>
-                            handleOnClick({
-                              name: mission_name,
-                              image: links,
-                              details: details,
-                            })
-                          }
-                          Icon={AiOutlineShoppingCart}
-                        ></Button>
-                      </div>
-                    </div>
+          {data.launchesPast.map(({ mission_name, details, links }, index) => (
+            <div className="item" key={index}>
+              <div className="item_image">
+                <img
+                  src={
+                    links.flickr_images.length !== 0
+                      ? links.flickr_images
+                      : "https://cdn.dribbble.com/users/1336327/screenshots/5905241/media/d7af04715fa7a7048bed3d2a697a9c91.gif"
+                  }
+                  alt={mission_name}
+                />
+              </div>
+              <div className="item_information">
+                <div className="information_top">
+                  <div className="product-name">
+                    {mission_name}
+                    センチネル-6マイケルフライリヒ
                   </div>
                 </div>
-              )
-            )}
-          </InfiniteScroll>
+                <div className="information_bottom">
+                  <div className="price">$180</div>
+                  <div className="pay">
+                    <Button
+                      styled={null}
+                      item={mission_name}
+                      handleOnClick={() =>
+                        handleOnClick({
+                          name: mission_name,
+                          image: links,
+                          details: details,
+                        })
+                      }
+                      Icon={AiOutlineShoppingCart}
+                    ></Button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
         </>
       )}
     </div>
