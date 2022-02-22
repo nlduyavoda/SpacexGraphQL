@@ -32,6 +32,7 @@ export const CardinalNumber = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-right: 20px;
 `;
 export const LoadingImage = styled.img`
   height: 200px;

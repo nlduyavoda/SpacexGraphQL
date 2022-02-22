@@ -112,9 +112,7 @@ export default function List() {
       refetch(GET_LIST);
     });
   }
-  const btnModal = document.getElementById("floating-btn");
   const modal = document.getElementById("modal");
-  const btnClose = document.getElementsByClassName("close");
   const handleOpenModal = () => {
     modal.classList.remove("out");
     modal.classList.add("open");

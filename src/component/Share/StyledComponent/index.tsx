@@ -2,14 +2,23 @@ import "./index.scss";
 import { Carts, CardinalNumber, LoadingImage } from "../ButtonShared";
 import styled from "styled-components";
 import { useEffect, useState } from "react";
+import { AiOutlineDelete } from "react-icons/ai";
+import { useDispatch, useSelector } from "react-redux";
+import { removeLauches } from "../../../Slices/Rocket";
+
 export default function ButtonStyled(props: any) {
+  const data = useSelector((state) => state);
+  const dispatch = useDispatch();
   const { Icon, ButtonCart, className, launches } = props;
   const ClassName = "shopping-carts";
+
   const [carts, setCarts] = useState(launches);
   useEffect(() => {
     setCarts(launches);
   }, [launches]);
-
+  const handlRemoveCart = (params: any) => {
+    dispatch(removeLauches(params));
+  };
   return (
     <ButtonCart className={className}>
       <Icon />
@@ -36,6 +45,9 @@ export default function ButtonStyled(props: any) {
                       {cart.name}
                       <div> $180</div>
                     </div>
+                    <button onClick={() => handlRemoveCart(cart)}>
+                      <AiOutlineDelete />
+                    </button>
                   </div>
                 );
               })}

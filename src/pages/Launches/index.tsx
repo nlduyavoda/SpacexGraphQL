@@ -22,9 +22,10 @@ function Lauches() {
   const dispatch = useDispatch();
   const res = useSelector((state: RootState) => state.launchList.launches);
 
-  const handleOnClick = (launches: cartType) => {
+  const handleAddToCart = (launches: cartType) => {
     dispatch(addLauches(launches));
   };
+
   const FloatingButton = styled.div`
     border: 2px solid palevioletred;
   `;
@@ -37,7 +38,8 @@ function Lauches() {
     <div className="Productlist">
       <ButtonStyled
         launches={res}
-        className={"cart-button"}
+        // className={"cart-button"}
+        className={"cart-button-unhide"}
         Icon={AiOutlineShoppingCart}
         ButtonCart={ButtonCart}
       />
@@ -64,6 +66,23 @@ function Lauches() {
                   <div className="product-name">
                     {mission_name}
                     センチネル-6マイケルフライリヒ
+                    センチネル-6マイケルフライリヒ
+                    センチネル-6マイケルフライリヒ
+                    センチネル-6マイケルフライリヒ
+                    センチネル-6マイケルフライリヒ
+                    センチネル-6マイケルフライリヒ
+                    センチネル-6マイケルフライリヒ
+                    センチネル-6マイケルフライリヒ
+                    センチネル-6マイケルフライリヒ
+                    センチネル-6マイケルフライリヒ
+                    センチネル-6マイケルフライリヒ
+                    センチネル-6マイケルフライリヒ
+                    センチネル-6マイケルフライリヒ
+                    センチネル-6マイケルフライリヒ
+                    センチネル-6マイケルフライリヒ
+                    センチネル-6マイケルフライリヒ
+                    センチネル-6マイケルフライリヒ
+                    センチネル-6マイケルフライリヒ
                   </div>
                 </div>
                 <div className="information_bottom">
@@ -73,10 +92,11 @@ function Lauches() {
                       styled={null}
                       item={mission_name}
                       handleOnClick={() =>
-                        handleOnClick({
+                        handleAddToCart({
                           name: mission_name,
                           image: links,
                           details: details,
+                          amount: 1,
                         })
                       }
                       Icon={AiOutlineShoppingCart}
