@@ -4,12 +4,13 @@ import styled from "styled-components";
 import { useEffect, useState } from "react";
 import { AiOutlineDelete } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
-import { removeLauches } from "../../../Slices/Rocket";
+import { removeLauches, reduceLauches } from "../../../Slices/Rocket";
 import { Retangle } from "../../Share/ButtonShared";
+import { AiOutlineMinusCircle, AiOutlinePlusCircle } from "react-icons/ai";
 export default function ButtonStyled(props: any) {
   const data = useSelector((state) => state);
   const dispatch = useDispatch();
-  const { Icon, ButtonCart, className, launches } = props;
+  const { Icon, ButtonCart, className, launches, AddToCart } = props;
   const ClassName = "shopping-carts";
 
   const [carts, setCarts] = useState(launches);
@@ -18,6 +19,9 @@ export default function ButtonStyled(props: any) {
   }, [launches]);
   const handlRemoveCart = (params: any) => {
     dispatch(removeLauches(params));
+  };
+  const handleRecudeCart = (params: any) => {
+    dispatch(reduceLauches(params));
   };
   return (
     <ButtonCart className={className}>
@@ -40,6 +44,21 @@ export default function ButtonStyled(props: any) {
                         }
                         alt=""
                       />
+                    </div>
+                    <div className="cart-item-amount">
+                      <div
+                        className="action-amount"
+                        onClick={() => AddToCart(cart)}
+                      >
+                        <AiOutlinePlusCircle />
+                      </div>
+                      <div> {cart.amount}</div>
+                      <div
+                        className="action-amount"
+                        onClick={() => handleRecudeCart(cart)}
+                      >
+                        <AiOutlineMinusCircle />
+                      </div>
                     </div>
                     <div className="cart-item-infor">
                       {cart.name}

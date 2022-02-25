@@ -2,17 +2,14 @@ import { useQuery } from "@apollo/client";
 import Button from "component/Button";
 import { ButtonCart } from "component/Share/ButtonShared";
 import ButtonStyled from "component/Share/StyledComponent";
+import { useState } from "react";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
-import styled from "styled-components";
 import { GET_LAUNCHES } from "../../GraphqlClient/queries";
 import { addLauches } from "../../Slices/Rocket";
-import "./index.scss";
 import { RootState } from "../../store";
 import { cartType } from "../../Types";
-import InfiniteScroll from "react-infinite-scroll-component";
-import { useState } from "react";
-import { Retangle } from "../../component/Share/ButtonShared";
+import "./index.scss";
 function Lauches() {
   const [limitState, setLimitState] = useState(10);
   const { error, loading, data, refetch } = useQuery(GET_LAUNCHES, {
@@ -27,20 +24,13 @@ function Lauches() {
     dispatch(addLauches(launches));
   };
 
-  const FloatingButton = styled.div`
-    border: 2px solid palevioletred;
-  `;
-  const handleLoading = () => {
-    const newLimit = limitState + 10;
-    setLimitState(newLimit);
-    refetch({ limit: limitState });
-  };
   return (
     <div className="Productlist">
       <ButtonStyled
+        AddToCart={handleAddToCart}
         launches={res}
-        // className={"cart-button"}
-        className={"cart-button-unhide"}
+        className={"cart-button"}
+        // className={"cart-button-unhide"}
         Icon={AiOutlineShoppingCart}
         ButtonCart={ButtonCart}
       />

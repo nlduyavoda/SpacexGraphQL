@@ -30,12 +30,15 @@
         top: 130%;
         right: 0;
         overflow-y: scroll;
-        transition: ease 0.25s;
+        transition-timing-function: cubic-bezier(0.67, 0.17, 0.32, 0.95);
+        transition: all .5s;
         padding: 20px 20px 20px 20px;
         .cart-items {
             display: block;
             margin-top: 20px;
             padding: 10px;
+            transition: ease .7s;
+            transition-timing-function: cubic-bezier(0.67,0.17,0.32,0.95);
             .cart-item {
                 display: flex;
                 vertical-align: middle;
@@ -67,6 +70,24 @@
                     flex-direction: column;
                     justify-content: center;
                     vertical-align: middle;
+                }
+                &-amount{
+                    display: flex;
+                    justify-content: space-between;
+                    vertical-align: middle;
+                    width: 100px;
+                    padding: 0 20px 0 20px;
+                    box-sizing: border-box;
+                        svg{
+                            height: 20px;
+                            width: 20px;
+                            color: #1c658c;
+                            transition: ease 0.1s;
+                            &:hover{
+                                height: 22px;
+                                width: 22px;
+                            }
+                        }
                 }
             }
             button {
@@ -171,7 +192,7 @@
                 box-sizing: border-box;
                 padding: 10px;
                 &-img {
-                    margin-right: 10%;
+                    margin-right: 3%;
                     img {
                         border: 1px solid #eee;
                         height: 60px;
@@ -185,6 +206,25 @@
                     flex-direction: column;
                     justify-content: center;
                     vertical-align: middle;
+                }
+
+                &-amount{
+                    display: flex;
+                    justify-content: space-between;
+                    vertical-align: middle;
+                    width: 100px;
+                    padding: 0 20px 0 20px;
+                    box-sizing: border-box;
+                        svg{
+                            height: 20px;
+                            width: 20px;
+                            color: #1c658c;
+                            transition: ease 0.1s;
+                            &:hover{
+                                height: 22px;
+                                width: 22px;
+                            }
+                        }
                 }
             }
             button {
@@ -202,17 +242,10 @@
                     height: 30px;
                     width: 30px;
                     color: #b8405e;
+                   
                 }
+               
             }
-        }
-
-        &::before {
-            position: absolute;
-            content: "hhhhh";
-            width: 20px;
-            height: 20px;
-            background-color: red;
-            top: 100%;
         }
     }
 }
