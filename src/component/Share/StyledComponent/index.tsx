@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { AiOutlineDelete } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { removeLauches } from "../../../Slices/Rocket";
-
+import { Retangle } from "../../Share/ButtonShared";
 export default function ButtonStyled(props: any) {
   const data = useSelector((state) => state);
   const dispatch = useDispatch();
@@ -22,8 +22,8 @@ export default function ButtonStyled(props: any) {
   return (
     <ButtonCart className={className}>
       <Icon />
+      <Retangle />
       <Carts className={ClassName}>
-        <div className="title">カート</div>
         <div className="cart-items">
           {carts.length > 0 ? (
             <>

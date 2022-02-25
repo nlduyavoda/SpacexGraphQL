@@ -39,3 +39,4 @@ export const LoadingImage = styled.img`
   width: 200px;
   border-radius: 20%;
 `;
+export const Retangle = styled.div``;

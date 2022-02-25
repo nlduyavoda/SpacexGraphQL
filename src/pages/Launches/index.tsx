@@ -12,6 +12,7 @@ import { RootState } from "../../store";
 import { cartType } from "../../Types";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useState } from "react";
+import { Retangle } from "../../component/Share/ButtonShared";
 function Lauches() {
   const [limitState, setLimitState] = useState(10);
   const { error, loading, data, refetch } = useQuery(GET_LAUNCHES, {
@@ -66,23 +67,6 @@ function Lauches() {
                   <div className="product-name">
                     {mission_name}
                     センチネル-6マイケルフライリヒ
-                    センチネル-6マイケルフライリヒ
-                    センチネル-6マイケルフライリヒ
-                    センチネル-6マイケルフライリヒ
-                    センチネル-6マイケルフライリヒ
-                    センチネル-6マイケルフライリヒ
-                    センチネル-6マイケルフライリヒ
-                    センチネル-6マイケルフライリヒ
-                    センチネル-6マイケルフライリヒ
-                    センチネル-6マイケルフライリヒ
-                    センチネル-6マイケルフライリヒ
-                    センチネル-6マイケルフライリヒ
-                    センチネル-6マイケルフライリヒ
-                    センチネル-6マイケルフライリヒ
-                    センチネル-6マイケルフライリヒ
-                    センチネル-6マイケルフライリヒ
-                    センチネル-6マイケルフライリヒ
-                    センチネル-6マイケルフライリヒ
                   </div>
                 </div>
                 <div className="information_bottom">
@@ -111,4 +95,5 @@ function Lauches() {
     </div>
   );
 }
+
 export default Lauches;
