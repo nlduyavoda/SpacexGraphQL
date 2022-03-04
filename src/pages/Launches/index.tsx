@@ -9,6 +9,15 @@ import { GET_LAUNCHES } from "../../GraphqlClient/queries";
 import { addLauches } from "../../Slices/Rocket";
 import { RootState } from "../../store";
 import { cartType } from "../../Types";
+import {
+  CartsButton,
+  Carts,
+  CartItem,
+  Image,
+  Title,
+  LoadingImage,
+  Text,
+} from "./style";
 import "./index.scss";
 function Lauches() {
   const [limitState, setLimitState] = useState(10);
@@ -26,14 +35,48 @@ function Lauches() {
 
   return (
     <div className="Productlist">
-      <ButtonStyled
+      <CartsButton>
+        <AiOutlineShoppingCart />
+        <Carts>
+          {res.length > 0 ? (
+            <>
+              {res.map((cart: cartType, index) => {
+                return (
+                  <>
+                    <CartItem>
+                      <Image
+                        src={
+                          cart.image[0]
+                            ? cart.image
+                            : "https://cdn.dribbble.com/users/1336327/screenshots/5905241/media/d7af04715fa7a7048bed3d2a697a9c91.gif"
+                        }
+                      />
+                      <Title>{cart.name}</Title>
+                    </CartItem>
+                  </>
+                );
+              })}
+            </>
+          ) : (
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <LoadingImage src="https://i.pinimg.com/originals/1c/88/83/1c8883a1768f2f77caf0371d49a68dc2.gif" />
+              <Text> カートは空です</Text>
+            </div>
+          )}
+        </Carts>
+      </CartsButton>
+      {/* <ButtonStyled
         AddToCart={handleAddToCart}
         launches={res}
         className={"cart-button"}
         // className={"cart-button-unhide"}
-        Icon={AiOutlineShoppingCart}
-        ButtonCart={ButtonCart}
-      />
+      /> */}
       {error ? (
         "Error!"
       ) : loading ? (
@@ -85,5 +128,4 @@ function Lauches() {
     </div>
   );
 }
-
 export default Lauches;

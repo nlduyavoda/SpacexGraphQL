@@ -1,5 +1,5 @@
 import "./index.scss";
-import { Carts, CardinalNumber, LoadingImage } from "../ButtonShared";
+import { CardinalNumber, LoadingImage } from "../ButtonShared";
 import styled from "styled-components";
 import { useEffect, useState } from "react";
 import { AiOutlineDelete } from "react-icons/ai";
@@ -83,3 +83,7 @@ export default function ButtonStyled(props: any) {
     </ButtonCart>
   );
 }
+const Carts = styled.div`
+  transition-timing-function: cubic-bezier(0.67, 0.17, 0.32, 0.95);
+  transition: width 0.5s, height 0.7s;
+`;

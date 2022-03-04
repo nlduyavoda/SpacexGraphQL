@@ -27,7 +27,6 @@ export const ButtonCart = styled.button`
     height: 4.5rem;
   }
 `;
-export const Carts = styled.div``;
 export const CardinalNumber = styled.div`
   display: flex;
   align-items: center;

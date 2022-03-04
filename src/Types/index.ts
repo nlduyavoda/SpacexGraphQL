@@ -1,4 +1,4 @@
-export type flickr_images = string[];
+export type flickr_images = string[] | null;
 
 export type cartType = {
   name: string;
