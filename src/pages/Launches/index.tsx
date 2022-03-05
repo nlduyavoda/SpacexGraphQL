@@ -76,7 +76,13 @@ function Lauches() {
         launches={res}
         className={"cart-button"}
         // className={"cart-button-unhide"}
+<<<<<<< HEAD
       /> */}
+=======
+        Icon={AiOutlineShoppingCart}
+        ButtonCart={ButtonCart}
+      />
+>>>>>>> 8f66e7c (launches styling)
       {error ? (
         "Error!"
       ) : loading ? (

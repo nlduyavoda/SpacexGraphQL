@@ -11,7 +11,8 @@ export const ButtonCart = styled.button`
   align-items: center;
   justify-content: center;
   background-color: #1c658c;
-  left: 96%;
+  top: 5%;
+  left: 95%;
   z-index: 3;
   position: fixed;
   transition: ease-in 0.25s;
