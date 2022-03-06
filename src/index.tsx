@@ -5,6 +5,7 @@ import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import { Provider } from "react-redux";
 import { store } from "./store";
+import "./index.scss";
 const UDEMY = "https://www.crwn-clothing.com/";
 const SPACEX = "https://api.spacex.land/graphql/";
 const Pokemon = "https://graphql-pokemon2.vercel.app";

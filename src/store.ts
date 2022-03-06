@@ -1,6 +1,5 @@
-import { configureStore, PayloadAction } from "@reduxjs/toolkit";
-import { setupListeners } from "@reduxjs/toolkit/query";
-import launchReducer, { launchSlice } from "Slices/Rocket";
+import { configureStore } from "@reduxjs/toolkit";
+import { launchSlice } from "Slices/Rocket";
 
 export const store = configureStore({
   reducer: {

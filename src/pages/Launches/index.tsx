@@ -1,7 +1,6 @@
 import { useQuery } from "@apollo/client";
 import Button from "component/Button";
-import { ButtonCart } from "component/Share/ButtonShared";
-import ButtonStyled from "component/Share/StyledComponent";
+import Carts from "component/Carts";
 import { useState } from "react";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,18 +8,10 @@ import { GET_LAUNCHES } from "../../GraphqlClient/queries";
 import { addLauches } from "../../Slices/Rocket";
 import { RootState } from "../../store";
 import { cartType } from "../../Types";
-import {
-  CartsButton,
-  Carts,
-  CartItem,
-  Image,
-  Title,
-  LoadingImage,
-  Text,
-} from "./style";
 import "./index.scss";
+
 function Lauches() {
-  const [limitState, setLimitState] = useState(10);
+  const [limitState, setLimitState] = useState(20);
   const { error, loading, data, refetch } = useQuery(GET_LAUNCHES, {
     variables: {
       limit: limitState,
@@ -35,54 +26,7 @@ function Lauches() {
 
   return (
     <div className="Productlist">
-      <CartsButton>
-        <AiOutlineShoppingCart />
-        <Carts>
-          {res.length > 0 ? (
-            <>
-              {res.map((cart: cartType, index) => {
-                return (
-                  <>
-                    <CartItem>
-                      <Image
-                        src={
-                          cart.image[0]
-                            ? cart.image
-                            : "https://cdn.dribbble.com/users/1336327/screenshots/5905241/media/d7af04715fa7a7048bed3d2a697a9c91.gif"
-                        }
-                      />
-                      <Title>{cart.name}</Title>
-                    </CartItem>
-                  </>
-                );
-              })}
-            </>
-          ) : (
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-              }}
-            >
-              <LoadingImage src="https://i.pinimg.com/originals/1c/88/83/1c8883a1768f2f77caf0371d49a68dc2.gif" />
-              <Text> カートは空です</Text>
-            </div>
-          )}
-        </Carts>
-      </CartsButton>
-      {/* <ButtonStyled
-        AddToCart={handleAddToCart}
-        launches={res}
-        className={"cart-button"}
-        // className={"cart-button-unhide"}
-<<<<<<< HEAD
-      /> */}
-=======
-        Icon={AiOutlineShoppingCart}
-        ButtonCart={ButtonCart}
-      />
->>>>>>> 8f66e7c (launches styling)
+      <Carts res={res}></Carts>
       {error ? (
         "Error!"
       ) : loading ? (
@@ -119,6 +63,7 @@ function Lauches() {
                           name: mission_name,
                           image: links,
                           details: details,
+                          price: 180,
                           amount: 1,
                         })
                       }

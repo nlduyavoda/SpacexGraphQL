@@ -13,6 +13,7 @@ export const launchSlice = createSlice({
           name: action.payload.name,
           image: action.payload.image,
           details: action.payload.details,
+          price: action.payload.price,
           amount: 1,
         };
         state.launches.push(cart);
@@ -29,6 +30,7 @@ export const launchSlice = createSlice({
             name: action.payload.name,
             image: action.payload.image,
             details: action.payload.details,
+            price: action.payload.price,
             amount: 1,
           };
           state.launches.unshift(newCart);

@@ -5,6 +5,7 @@ export type cartType = {
   image: flickr_images;
   details: string;
   amount: number;
+  price: number;
 };
 
 export type launchSliceState = {
