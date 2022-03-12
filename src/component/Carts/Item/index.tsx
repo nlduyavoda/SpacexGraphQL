@@ -2,11 +2,9 @@ import { CartItem, Image, Text, Icon } from "./style.js";
 import { AiOutlineDelete } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import { removeLauches } from "../../../Slices/Rocket";
-
+import { IMAGE } from "../../../Share/mock.js";
 export default function Item({ cart, index }) {
   const dispatch = useDispatch();
-  const IMAGE =
-    "https://cdn.dribbble.com/users/1336327/screenshots/5905241/media/d7af04715fa7a7048bed3d2a697a9c91.gif";
   const handleRemoveCartItem = (cart) => {
     dispatch(removeLauches(cart));
   };

@@ -1,11 +1,12 @@
 import styled from "styled-components";
 import { __theme } from "../../Share/style";
-export const Carts = styled.div`
+const Carts = styled.div`
   display: flex;
   flex-direction: column;
   padding: 20px;
   position: absolute;
   height: max-content;
+  max-height: 400px;
   width: 350px;
   border-radius: 2%;
   position: absolute;
@@ -13,10 +14,11 @@ export const Carts = styled.div`
   right: 0%;
   background-color: ${__theme.primaryBlue};
   z-index: 2;
-  transform: scale(0);
+  transform: scale(1);
   transition: ease 0.5s;
   transform-origin: 95% 0%;
   color: white;
+  overflow: scroll;
   ::before {
     content: "";
     border-top: 10px solid transparent;
@@ -29,7 +31,7 @@ export const Carts = styled.div`
     right: 10px;
   }
 `;
-export const CartsButton = styled.button`
+const CartsButton = styled.button`
   height: 50px;
   width: 50px;
   border: 1px solid;
@@ -52,22 +54,22 @@ export const CartsButton = styled.button`
     transition: ease 0.5s;
   }
 `;
-export const LoadingImage = styled.img`
+const LoadingImage = styled.img`
   height: 200px;
   width: 200px;
   border-radius: 20%;
   margin-bottom: 20px;
 `;
-export const Text = styled.div`
+const Text = styled.div`
   color: white;
 `;
-export const Header = styled.div`
+const Header = styled.div`
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
   font-family: "JP_bold";
 `;
-export const Footer = styled.div`
+const Footer = styled.div`
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -80,3 +82,4 @@ export const Footer = styled.div`
     text-decoration-color: white;
   }
 `;
+export { Carts, CartsButton, LoadingImage, Text, Header, Footer };

@@ -1,4 +1,5 @@
 import { AiOutlineShoppingCart } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
 import { cartType } from "Types/index.js";
 import CartItem from "./Item";
 import {
@@ -9,7 +10,8 @@ import {
   Footer,
   Header,
 } from "./style.js";
-export default function index({ res }) {
+export default function Index({ res }) {
+  const navigate = useNavigate();
   return (
     <CartsButton>
       <AiOutlineShoppingCart />
@@ -18,9 +20,15 @@ export default function index({ res }) {
           <>
             <Header>ショッピングカート</Header>
             {res.map((cart: cartType, index) => {
-              return <CartItem cart={cart} index={index} />;
+              return <CartItem cart={cart} key={index} index={index} />;
             })}
-            <Footer>すべてのアイテムを見る</Footer>
+            <Footer
+              onClick={() => {
+                navigate("./cart");
+              }}
+            >
+              すべてのアイテムを見る
+            </Footer>
           </>
         ) : (
           <div

@@ -11,7 +11,7 @@ import { cartType } from "../../Types";
 import "./index.scss";
 
 function Lauches() {
-  const [limitState, setLimitState] = useState(20);
+  const [limitState, setLimitState] = useState(3);
   const { error, loading, data, refetch } = useQuery(GET_LAUNCHES, {
     variables: {
       limit: limitState,

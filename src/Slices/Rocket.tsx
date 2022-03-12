@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { cartType, launchSliceState } from "../Types";
+import { launchSliceState, cartType } from "../Types";
 const initialState: launchSliceState = {
   launches: [],
 };
