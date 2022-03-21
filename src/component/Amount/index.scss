@@ -1,0 +1,9 @@
+.amount {
+  width: 80px;
+  display: flex;
+  justify-content: space-between;
+  :first-child,
+  :last-child {
+    cursor: pointer;
+  }
+}

@@ -3,10 +3,9 @@ import { __theme } from "../../../Share/style";
 
 const CartItem = styled.div`
   display: flex;
+  justify-content: space-between;
   border: 1px solid white;
-  display: flex;
   align-items: center;
-  justify-content: start;
   border-radius: 15px;
   font-size: 1.1rem;
   width: 100%;
@@ -19,6 +18,7 @@ const CartItem = styled.div`
   color: ${__theme.primaryBlue};
   background-color: ${__theme.primaryWhite};
 `;
+const Price = styled.div``;
 const Image = styled.img`
   height: ${(props) => (props.PropsSize ? props.PropsSize : "60px")};
   width: ${(props) => (props.PropsSize ? props.PropsSize : "60px")};
@@ -26,7 +26,9 @@ const Image = styled.img`
   border-radius: 50%;
   margin-right: 20px;
 `;
-
+const Title = styled.div`
+  width: 30%;
+`;
 const Text = styled.p`
   font-size: ${({ FontSize }) => (FontSize ? FontSize : "16px")};
   font-weight: ${({ FontSize }) => (FontSize ? "bold" : "")};
@@ -42,4 +44,4 @@ const Icon = styled.div`
     color: ${__theme.primaryBlue} !important;
   }
 `;
-export { CartItem, Image, Text, Icon };
+export { CartItem, Image, Text, Icon, Title, Price };

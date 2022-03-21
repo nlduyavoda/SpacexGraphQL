@@ -1,27 +1,24 @@
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
-import { cartType } from "Types/index.js";
-import CartItem from "./Item";
+import CartBody from "../../pages/Cart/CartBody";
+import Header from "../../component/Carts/Item/Header";
 import {
-  Carts,
+  Carts_Styled,
   CartsButton,
+  Footer,
   LoadingImage,
   Text,
-  Footer,
-  Header,
 } from "./style.js";
-export default function Index({ res }) {
+export default function Index({ carts }) {
   const navigate = useNavigate();
   return (
     <CartsButton>
       <AiOutlineShoppingCart />
-      <Carts>
-        {res.length > 0 ? (
+      <Carts_Styled>
+        {carts.length > 0 ? (
           <>
-            <Header>ショッピングカート</Header>
-            {res.map((cart: cartType, index) => {
-              return <CartItem cart={cart} key={index} index={index} />;
-            })}
+            <Header title="ショッピングカート"></Header>
+            <CartBody carts={carts} />
             <Footer
               onClick={() => {
                 navigate("./cart");
@@ -42,7 +39,7 @@ export default function Index({ res }) {
             <Text> カートは空です</Text>
           </div>
         )}
-      </Carts>
+      </Carts_Styled>
     </CartsButton>
   );
 }

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { __theme } from "../../Share/style";
-const Carts = styled.div`
+const Carts_Styled = styled.div`
   display: flex;
   flex-direction: column;
   padding: 20px;
@@ -49,7 +49,7 @@ const CartsButton = styled.button`
     height: 30px;
     width: 30px;
   }
-  :focus ${Carts} {
+  :focus ${Carts_Styled} {
     transform: scale(1);
     transition: ease 0.5s;
   }
@@ -82,4 +82,4 @@ const Footer = styled.div`
     text-decoration-color: white;
   }
 `;
-export { Carts, CartsButton, LoadingImage, Text, Header, Footer };
+export { Carts_Styled, CartsButton, LoadingImage, Text, Header, Footer };

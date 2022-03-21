@@ -1,0 +1,61 @@
+.modal {
+    $size: 400px;
+    &-overlay {
+        transform: scale(0);
+        &.active {
+            transform: scale(1);
+            position: absolute;
+            padding-top: 100px; /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0, 0, 0); /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+            justify-content: center;
+            z-index: 1;
+        }
+    }
+
+    &-container {
+        transform: scale(0);
+        transition: ease 0.5s;
+        position: absolute;
+        top: 0%;
+        left: 25%;
+        &-title {
+            .btn-close {
+                height: 10px;
+                width: 10px;
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                cursor: pointer;
+                background-image: url("data:image/png;base64,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");
+                background-size: 10px;
+                transition: ease 0.3;
+                transform: scale(1);
+            }
+            :hover {
+                transition: ease 0.3;
+                transform: scale(1.2);
+            }
+        }
+        &-body {
+            display: flex;
+            justify-content: center;
+        }
+        &.active {
+            position: absolute;
+            top: 25%;
+            left: 50%;
+            transform: scale(1) translateX(-50%);
+            transition: ease 0.5s;
+            background-color: white;
+            height: $size;
+            width: $size;
+            z-index: 2;
+        }
+    }
+}

@@ -1,0 +1,15 @@
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  .item {
+    width: 25%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    img {
+      height: 200px;
+      width: 200px;
+      margin: 40px;
+    }
+  }
+}

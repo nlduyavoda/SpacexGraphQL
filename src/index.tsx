@@ -6,6 +6,7 @@ import App from "./App";
 import { Provider } from "react-redux";
 import { store } from "./store";
 import "./index.scss";
+import { QueryClient, QueryClientProvider } from "react-query";
 const UDEMY = "https://www.crwn-clothing.com/";
 const SPACEX = "https://api.spacex.land/graphql/";
 const Pokemon = "https://graphql-pokemon2.vercel.app";
@@ -13,15 +14,16 @@ const client = new ApolloClient({
   uri: SPACEX,
   cache: new InMemoryCache(),
 });
+const queryClient = new QueryClient();
 
 render(
   <React.StrictMode>
     <Provider store={store}>
-      <ApolloProvider client={client}>
+      <QueryClientProvider client={queryClient}>
         <BrowserRouter>
           <App />
         </BrowserRouter>
-      </ApolloProvider>
+      </QueryClientProvider>
     </Provider>
   </React.StrictMode>,
 

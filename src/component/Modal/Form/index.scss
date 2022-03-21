@@ -1,0 +1,14 @@
+.form {
+    $size: 300px;
+    height: $size;
+    width: $size;
+    margin-top: 50%;
+    transform: translateY(-50%);
+    padding: 20px;
+    .label-input {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+    }
+}

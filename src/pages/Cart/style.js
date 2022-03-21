@@ -1,9 +1,7 @@
 import styled from "styled-components";
 import { __theme } from "../../Share/style";
 const { primaryBlue, primaryWhite } = __theme;
-const BasicColorTheme = () => {
-  return "color: ${primaryWhite} ;background-color:${primaryBlue};";
-};
+
 export const CartStyled = styled.div`
   height: 100%;
   width: 100%;
@@ -18,7 +16,7 @@ export const CartItemPage = styled.div`
   font-family: "JP_bold";
   font-size: 20px;
 `;
-export const ButtonRevert = styled.button`
+export const ButtonRevert = styled.div`
   cursor: pointer;
   position: fixed;
   bottom: 5%;

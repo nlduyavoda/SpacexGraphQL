@@ -8,6 +8,16 @@ import { GET_LAUNCHES } from "../../GraphqlClient/queries";
 import { addLauches } from "../../Slices/Rocket";
 import { RootState } from "../../store";
 import { cartType } from "../../Types";
+import { useNavigate } from "react-router-dom";
+import CartBody from "../../pages/Cart/CartBody";
+import Header from "../../component/Carts/Item/Header";
+import {
+  Carts_Styled,
+  CartsButton,
+  Footer,
+  LoadingImage,
+  Text,
+} from "../../component/Carts/style.js";
 import "./index.scss";
 
 function Lauches() {
@@ -19,14 +29,53 @@ function Lauches() {
   });
   const dispatch = useDispatch();
   const res = useSelector((state: RootState) => state.launchList.launches);
-
+  const navigate = useNavigate();
   const handleAddToCart = (launches: cartType) => {
     dispatch(addLauches(launches));
   };
 
   return (
     <div className="Productlist">
-      <Carts res={res}></Carts>
+      {/* <Carts carts={res}></Carts> */}
+      <CartsButton>
+        <AiOutlineShoppingCart />
+        <Carts_Styled>
+          {res.length > 0 ? (
+            // <>
+            //   <Header title="ショッピングカート"></Header>
+            //   <CartBody carts={res} />
+            //   <Footer
+            //     onClick={() => {
+            //       navigate("./cart");
+            //     }}
+            //   >
+            //     すべてのアイテムを見る
+            //   </Footer>
+            // </>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <LoadingImage src="https://i.pinimg.com/originals/1c/88/83/1c8883a1768f2f77caf0371d49a68dc2.gif" />
+              <Text> カートは空です</Text>
+            </div>
+          ) : (
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <LoadingImage src="https://i.pinimg.com/originals/1c/88/83/1c8883a1768f2f77caf0371d49a68dc2.gif" />
+              <Text> カートは空です</Text>
+            </div>
+          )}
+        </Carts_Styled>
+      </CartsButton>
       {error ? (
         "Error!"
       ) : loading ? (
